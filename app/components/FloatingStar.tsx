@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 type FloatingStarProps = {
@@ -26,6 +26,35 @@ export default function FloatingStar({
   const ref = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<{ x: number; y: number } | null>(null);
 
+  // raw values driven by the hover/idle animations below
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+
+  // hard visual clamp applied on every single frame: no matter what drives
+  // rawX/rawY (hover push, idle bob, or any future animation added here),
+  // the star's rendered center can never move further than its own size
+  // away from its resting spot - this is what actually stops it from
+  // flying off screen, independent of whatever animation produced the value
+  const boundedX = useTransform(rawX, (v) => Math.max(-size, Math.min(size, v)));
+  const boundedY = useTransform(rawY, (v) => Math.max(-size, Math.min(size, v)));
+
+  useEffect(() => {
+    const controls = animate(rawX, hover ? hover.x : 0, {
+      duration: hover ? 0.25 : 0.9,
+      ease: "easeOut",
+    });
+    return () => controls.stop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hover]);
+
+  useEffect(() => {
+    const controls = hover
+      ? animate(rawY, hover.y, { duration: 0.25, ease: "easeOut" })
+      : animate(rawY, [0, -bobDistance, 0], { duration: 3.2, repeat: Infinity, ease: "easeInOut" });
+    return () => controls.stop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hover, bobDistance]);
+
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = ref.current;
     if (!el) return;
@@ -35,8 +64,8 @@ export default function FloatingStar({
     const dx = cx - e.clientX;
     const dy = cy - e.clientY;
     const dist = Math.max(Math.hypot(dx, dy), 1);
-    // hard clamp on top of the unit-vector math below, so the star can never
-    // be pushed further than pushDistance no matter what triggers this handler
+    // clamp on top of the unit-vector math, so the *target* is also always
+    // within pushDistance (belt and suspenders with the render-time clamp above)
     const clamp = (n: number) => Math.max(-pushDistance, Math.min(pushDistance, n));
     setHover({
       x: clamp((dx / dist) * pushDistance),
@@ -54,26 +83,7 @@ export default function FloatingStar({
     >
       <motion.div
         className="w-full h-full"
-        animate={
-          hover
-            ? { x: hover.x, y: hover.y }
-            : { x: 0, y: [0, -bobDistance, 0] }
-        }
-        transition={
-          hover
-            ? // tween, not spring: a spring being continuously re-targeted by fast
-              // mousemove events can resonate and overshoot way past the target
-              // (that's what was sending stars flying off screen) - a tween only
-              // ever eases toward the target and can never exceed it
-              { x: { duration: 0.25, ease: "easeOut" }, y: { duration: 0.25, ease: "easeOut" } }
-            : {
-                // deliberately slow, non-bouncy glide back to rest - no spring here,
-                // so it never overshoots or snaps into place
-                x: { duration: 0.9, ease: "easeOut" },
-                y: { duration: 3.2, repeat: Infinity, ease: "easeInOut" },
-              }
-        }
-        style={{ transform: `rotate(${rotate}deg)`, position: "relative" }}
+        style={{ x: boundedX, y: boundedY, rotate, position: "relative" }}
       >
         <Image src={src} alt="" fill sizes={`${size}px`} style={{ objectFit: "contain" }} />
       </motion.div>
