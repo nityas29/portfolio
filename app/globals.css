@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+:root {
+  --background: #181e24;
+  --foreground: #ffffff;
+
+  /* project tag palette, matching Figma */
+  --pink: #eb369b;
+  --blue: #0098d4;
+  --red: #ff1e00;
+  --gold: #ffb200;
+  --amber: #d69500;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-pink: var(--pink);
+  --color-blue: var(--blue);
+  --color-red: var(--red);
+  --color-gold: var(--gold);
+  --color-amber: var(--amber);
+  --font-mono: var(--font-dm-mono);
+  --font-display: var(--font-londrina);
+  /* Page Friends case study only - that product's own type system, not the portfolio's */
+  --font-pf-sans: var(--font-dm-sans);
+  --font-pf-display: var(--font-balsamiq);
+  /* EcoStack case study only - that product's own type system (Inter / Inter Light) */
+  --font-es-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-dm-mono), monospace;
+}
