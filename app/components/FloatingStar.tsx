@@ -35,9 +35,12 @@ export default function FloatingStar({
     const dx = cx - e.clientX;
     const dy = cy - e.clientY;
     const dist = Math.max(Math.hypot(dx, dy), 1);
+    // hard clamp on top of the unit-vector math below, so the star can never
+    // be pushed further than pushDistance no matter what triggers this handler
+    const clamp = (n: number) => Math.max(-pushDistance, Math.min(pushDistance, n));
     setHover({
-      x: (dx / dist) * pushDistance,
-      y: (dy / dist) * pushDistance,
+      x: clamp((dx / dist) * pushDistance),
+      y: clamp((dy / dist) * pushDistance),
     });
   }
 
@@ -58,7 +61,11 @@ export default function FloatingStar({
         }
         transition={
           hover
-            ? { type: "spring", stiffness: 180, damping: 12 }
+            ? // tween, not spring: a spring being continuously re-targeted by fast
+              // mousemove events can resonate and overshoot way past the target
+              // (that's what was sending stars flying off screen) - a tween only
+              // ever eases toward the target and can never exceed it
+              { x: { duration: 0.25, ease: "easeOut" }, y: { duration: 0.25, ease: "easeOut" } }
             : {
                 // deliberately slow, non-bouncy glide back to rest - no spring here,
                 // so it never overshoots or snaps into place
