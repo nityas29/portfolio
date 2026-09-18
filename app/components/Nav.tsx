@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { BASE_PATH } from "../lib/basePath";
 
 function scrollToId(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -100,7 +101,7 @@ export default function Nav() {
           <LinkedInIcon />
           <span className="font-mono text-[13px] font-light">LINKEDIN</span>
         </a>
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:opacity-70">
+        <a href={`${BASE_PATH}/resume.pdf`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:opacity-70">
           <UserCircleIcon />
           <span className="font-mono text-[13px] font-light">RESUME</span>
         </a>

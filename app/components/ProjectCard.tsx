@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { BASE_PATH } from "../lib/basePath";
 
 type Tag = { label: string; color: string };
 
@@ -121,7 +122,7 @@ export default function ProjectCard({
       {mediaSlot}
       {video && (
         <video
-          src={video}
+          src={`${BASE_PATH}${video}`}
           autoPlay
           muted
           loop

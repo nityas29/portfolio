@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { motion, useAnimation } from "framer-motion";
 import FloatingStar from "./FloatingStar";
 import ScatterStar from "./ScatterStar";
+import { BASE_PATH } from "../lib/basePath";
 
 function BouncyStar({ src, size, className }: { src: string; size: number; className?: string }) {
   const controls = useAnimation();
@@ -90,7 +91,7 @@ export default function Footer() {
               <a href="mailto:nityashankar2009@gmail.com">EMAIL</a>
             </li>
             <li>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a href={`${BASE_PATH}/resume.pdf`} target="_blank" rel="noopener noreferrer">
                 RESUME
               </a>
             </li>

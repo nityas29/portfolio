@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+import { BASE_PATH } from "../../lib/basePath";
 
 // Page Friends' own brand palette (from the project's style guide), used only within
 // this case study - distinct from the portfolio's own color tokens.
@@ -394,7 +395,7 @@ export default function PageFriendsCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/pf-individualization-demo.mp4"
+                src={`${BASE_PATH}/assets/pf-individualization-demo.mp4`}
                 autoPlay
                 muted
                 loop
@@ -414,7 +415,7 @@ export default function PageFriendsCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/pf-gamification-demo.mp4"
+                src={`${BASE_PATH}/assets/pf-gamification-demo.mp4`}
                 autoPlay
                 muted
                 loop
@@ -437,7 +438,7 @@ export default function PageFriendsCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/pf-library-demo.mp4"
+                src={`${BASE_PATH}/assets/pf-library-demo.mp4`}
                 autoPlay
                 muted
                 loop
@@ -456,7 +457,7 @@ export default function PageFriendsCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/pf-visit-town-demo.mp4"
+                src={`${BASE_PATH}/assets/pf-visit-town-demo.mp4`}
                 autoPlay
                 muted
                 loop
@@ -474,7 +475,7 @@ export default function PageFriendsCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/pf-achievements-demo.mp4"
+                src={`${BASE_PATH}/assets/pf-achievements-demo.mp4`}
                 autoPlay
                 muted
                 loop

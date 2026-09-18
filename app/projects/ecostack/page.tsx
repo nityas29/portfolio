@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+import { BASE_PATH } from "../../lib/basePath";
 
 // EcoStack's own brand palette (from the project's style guide + visual design
 // decisions), used only within this case study - distinct from the portfolio's own
@@ -392,7 +393,7 @@ export default function EcoStackCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/es-role-based-access-demo.mp4"
+                src={`${BASE_PATH}/assets/es-role-based-access-demo.mp4`}
                 autoPlay
                 muted
                 loop
@@ -411,7 +412,7 @@ export default function EcoStackCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/es-data-entry-demo.mp4"
+                src={`${BASE_PATH}/assets/es-data-entry-demo.mp4`}
                 autoPlay
                 muted
                 loop
@@ -430,7 +431,7 @@ export default function EcoStackCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/es-reports-demo.mp4"
+                src={`${BASE_PATH}/assets/es-reports-demo.mp4`}
                 autoPlay
                 muted
                 loop
@@ -451,7 +452,7 @@ export default function EcoStackCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/es-compliance-hub-demo.mp4"
+                src={`${BASE_PATH}/assets/es-compliance-hub-demo.mp4`}
                 autoPlay
                 muted
                 loop
@@ -472,7 +473,7 @@ export default function EcoStackCaseStudy() {
                 </p>
               </div>
               <video
-                src="/assets/es-add-facility-demo.mp4"
+                src={`${BASE_PATH}/assets/es-add-facility-demo.mp4`}
                 autoPlay
                 muted
                 loop
