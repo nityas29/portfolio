@@ -368,7 +368,7 @@ export default function EcoStackCaseStudy() {
               </p>
             </div>
             <a
-              href="https://www.figma.com/design/6Mr4yl4ipVjjQ0BsEf3SzU/wireframe?node-id=172-4029&t=3K5rVCPMBNqFP30h-1"
+              href="https://www.figma.com/make/1ouvrGK5Fkis8p18DuGRsC/High-Fidelity-EcoStack-Prototype--Copy-?code-node-id=0-9&p=f&t=ZebNhCw3JyW4F9CB-0&fullscreen=1"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-white text-[16px] tracking-wide border border-white rounded-[5px] px-4 py-2 hover:opacity-80"
