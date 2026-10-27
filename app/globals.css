@@ -34,3 +34,18 @@ body {
   color: var(--foreground);
   font-family: var(--font-dm-mono), monospace;
 }
+
+/* Site-wide custom cursor: a white arrow with a navy outline. Applied to every
+   element (with !important) so links and buttons use it too instead of the
+   default hand. Hotspot is the arrow tip at (3, 2). */
+* {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath d='M3 2.5 L3 19.5 L7.4 15.6 L10.4 22.6 L13.6 21.2 L10.6 14.4 L16.6 14.4 Z' fill='white' stroke='%230b1f4d' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto !important;
+}
+
+/* Hides the cursor entirely over project cards, where the "VIEW CASE STUDY" /
+   "COMING SOON" label follows the mouse instead. More specific than the rule above,
+   so it wins. */
+.cursor-hidden,
+.cursor-hidden * {
+  cursor: none !important;
+}

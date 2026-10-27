@@ -136,7 +136,7 @@ export default function ProjectCard({
 
   const content = (
     <div
-      className="relative flex items-center justify-center gap-8 cursor-pointer"
+      className="relative flex items-center justify-center gap-8 cursor-hidden"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
@@ -150,7 +150,7 @@ export default function ProjectCard({
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.12 }}
             className="absolute z-20 text-black font-mono uppercase text-sm px-3 py-1 rounded whitespace-nowrap pointer-events-none"
-            style={{ backgroundColor: "#eb369b", left: tip.x, top: tip.y, transform: "translate(-50%, -140%)" }}
+            style={{ backgroundColor: "#eb369b", left: tip.x, top: tip.y, transform: "translate(-50%, -50%)" }}
           >
             {comingSoon ? "COMING SOON" : "VIEW CASE STUDY"}
           </motion.div>
