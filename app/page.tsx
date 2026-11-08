@@ -64,6 +64,21 @@ const HERO_SCATTER_STARS: { x: number; y: number }[] = [
   { x: 50, y: 90 },
 ];
 
+// below lg the hero stacks into one tall centered column, so the desktop scatter
+// above would land on the text. On phones/tablets the stars stay in the side margins
+// (within the section's horizontal padding) instead.
+const HERO_SCATTER_STARS_MOBILE: { x: number; y: number }[] = [
+  { x: 4, y: 6 },
+  { x: 95, y: 12 },
+  { x: 5, y: 26 },
+  { x: 96, y: 36 },
+  { x: 4, y: 48 },
+  { x: 95, y: 58 },
+  { x: 5, y: 72 },
+  { x: 96, y: 82 },
+  { x: 4, y: 93 },
+];
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-full">
@@ -77,6 +92,16 @@ export default function Home() {
               key={i}
               color="white"
               size={19}
+              className="hidden lg:block"
+              style={{ left: `${s.x}%`, top: `${s.y}%`, transform: "translate(-50%, -50%)" }}
+            />
+          ))}
+          {HERO_SCATTER_STARS_MOBILE.map((s, i) => (
+            <ScatterStar
+              key={`m${i}`}
+              color="white"
+              size={16}
+              className="lg:hidden"
               style={{ left: `${s.x}%`, top: `${s.y}%`, transform: "translate(-50%, -50%)" }}
             />
           ))}
