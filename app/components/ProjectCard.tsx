@@ -41,8 +41,6 @@ type ProjectCardProps = {
 };
 
 const VIDEO_W = 408;
-const VIDEO_H = 271;
-const CARD_H = 271;
 
 export default function ProjectCard({
   title,
@@ -67,12 +65,11 @@ export default function ProjectCard({
 
   const card = (
     <div
-      className="relative z-10 bg-white p-6 flex flex-col justify-center gap-2 w-full max-w-[552px] min-w-0 overflow-hidden"
-      style={{ height: CARD_H }}
+      className="relative z-10 bg-white p-6 flex flex-col justify-center gap-2 w-full max-w-[552px] min-w-0 overflow-hidden min-h-[271px] md:h-[271px]"
     >
-      <h3 className="font-mono font-medium text-black text-[29px] leading-tight">{title}</h3>
+      <h3 className="font-mono font-medium text-black text-[24px] md:text-[29px] leading-tight">{title}</h3>
       <p className="font-mono font-light text-black/50 text-sm">{date}</p>
-      <p className="font-mono text-black text-[15px] leading-snug line-clamp-2">{description}</p>
+      <p className="font-mono text-black text-[15px] leading-snug md:line-clamp-2">{description}</p>
 
       <div className="flex flex-wrap gap-1.5 mt-1">
         {tags.map((tag) => (
@@ -89,7 +86,11 @@ export default function ProjectCard({
   );
 
   const mediaBlock = (media || mediaSlot) && (
-    <div className="relative shrink-0" style={video ? { width: VIDEO_W, height: VIDEO_H } : undefined}>
+    <div
+      className={`relative shrink-0 ${video ? "w-full max-w-[408px] aspect-[408/271]" : "max-w-full"}`}
+    >
+      {/* decorative badge stars sit outside the card's edges with fixed pixel offsets,
+          which would spill off a phone screen - desktop only */}
       {badges?.map((b, i) => (
         <Image
           key={i}
@@ -97,7 +98,7 @@ export default function ProjectCard({
           alt=""
           width={b.size}
           height={b.size}
-          className={`absolute z-0 pointer-events-none ${b.className}`}
+          className={`absolute z-0 pointer-events-none hidden md:block ${b.className}`}
         />
       ))}
       {media && video && (
@@ -105,7 +106,7 @@ export default function ProjectCard({
           src={media.src}
           alt={media.alt}
           fill
-          sizes={`${VIDEO_W}px`}
+          sizes={`(max-width: 768px) 100vw, ${VIDEO_W}px`}
           className="relative z-10 object-cover"
           style={{ opacity: hovered ? 0 : 1, transition: "opacity 0.2s ease" }}
         />
@@ -116,7 +117,7 @@ export default function ProjectCard({
           alt={media.alt}
           width={media.width}
           height={media.height}
-          className="relative z-10 object-cover"
+          className="relative z-10 object-cover max-w-full h-auto"
         />
       )}
       {mediaSlot}
@@ -136,11 +137,12 @@ export default function ProjectCard({
 
   const content = (
     <div
-      className="relative flex items-center justify-center gap-8 cursor-hidden"
+      className={`relative flex flex-col items-center justify-center gap-5 md:gap-8 cursor-hidden ${
+        mediaPosition === "left" ? "md:flex-row-reverse" : "md:flex-row"
+      }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
-      style={{ flexDirection: mediaPosition === "left" ? "row-reverse" : "row" }}
     >
       <AnimatePresence>
         {hovered && (
@@ -149,7 +151,7 @@ export default function ProjectCard({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.12 }}
-            className="absolute z-20 text-black font-mono uppercase text-sm px-3 py-1 rounded whitespace-nowrap pointer-events-none"
+            className="hidden md:block absolute z-20 text-black font-mono uppercase text-sm px-3 py-1 rounded whitespace-nowrap pointer-events-none"
             style={{ backgroundColor: "#eb369b", left: tip.x, top: tip.y, transform: "translate(-50%, -50%)" }}
           >
             {comingSoon ? "COMING SOON" : "VIEW CASE STUDY"}

@@ -103,7 +103,7 @@ function ExpandableImage({
     const el = imgRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const targetWidth = Math.min(window.innerWidth * 0.42, 600);
+    const targetWidth = Math.min(window.innerWidth * (window.innerWidth < 768 ? 0.92 : 0.42), 600);
     const targetHeight = targetWidth * (rect.height / rect.width);
     setRects({
       origin: { top: rect.top, left: rect.left, width: rect.width, height: rect.height },
@@ -181,13 +181,13 @@ export default function EcoStackCaseStudy() {
             />
           </div>
 
-          <div className="px-16 py-9">
+          <div className="px-5 md:px-16 py-9">
             <p className="font-es-sans font-medium text-[22px] md:text-[27px] tracking-wide max-w-6xl">
               Turning three months of fragmented sustainability data into a system Meridian
               Retail Group (MRG) can trust and act on.
             </p>
 
-            <div className="grid grid-cols-4 gap-5 mt-9 max-w-6xl font-es-sans tracking-wide">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-9 max-w-6xl font-es-sans tracking-wide">
               <div>
                 <p className="text-[16px] text-black/60">ROLE</p>
                 <p className="text-[16px] font-medium mt-2">
@@ -230,7 +230,7 @@ export default function EcoStackCaseStudy() {
           </div>
 
           {/* OVERVIEW */}
-          <div className="py-10 px-16" style={{ backgroundColor: ES.dark }}>
+          <div className="py-10 px-5 md:px-16" style={{ backgroundColor: ES.dark }}>
             <div className="max-w-6xl mx-auto">
               <Label color={ES.green}>OVERVIEW</Label>
               <p className="font-es-sans text-white text-[19px] md:text-[26px] tracking-wide leading-snug mt-4">
@@ -250,7 +250,7 @@ export default function EcoStackCaseStudy() {
         </section>
 
         {/* PROBLEM */}
-        <section className="px-16 py-14">
+        <section className="px-5 md:px-16 py-14">
           <div className="max-w-6xl mx-auto flex flex-col gap-5">
             <Label>PROBLEM</Label>
             <p className="font-es-sans font-semibold text-[22px] tracking-wide">
@@ -272,7 +272,7 @@ export default function EcoStackCaseStudy() {
         </section>
 
         {/* RESEARCH */}
-        <section className="px-16 pt-2 pb-16">
+        <section className="px-5 md:px-16 pt-2 pb-16">
           <div className="max-w-6xl mx-auto flex flex-col gap-7">
             <Label>RESEARCH</Label>
             <p className="font-es-sans text-[19px] md:text-[22px] tracking-wide">
@@ -317,7 +317,7 @@ export default function EcoStackCaseStudy() {
         </section>
 
         {/* MODELING THE SYSTEM */}
-        <section className="px-16 py-14">
+        <section className="px-5 md:px-16 py-14">
           <div className="max-w-6xl mx-auto flex flex-col gap-7">
             <Label>MODELING THE SYSTEM</Label>
             <p className="font-es-sans text-[19px] md:text-[22px] tracking-wide">
@@ -359,7 +359,7 @@ export default function EcoStackCaseStudy() {
         </section>
 
         {/* SOLUTION */}
-        <section id="es-solution" className="py-9 px-16" style={{ backgroundColor: ES.dark }}>
+        <section id="es-solution" className="py-9 px-5 md:px-16" style={{ backgroundColor: ES.dark }}>
           <div className="max-w-6xl mx-auto flex items-center justify-between gap-5 flex-wrap">
             <div>
               <Label color={ES.green}>SOLUTION</Label>
@@ -379,7 +379,7 @@ export default function EcoStackCaseStudy() {
         </section>
 
         {/* FEATURE WALKTHROUGH */}
-        <section className="px-16 py-16" style={{ backgroundColor: ES.mint }}>
+        <section className="px-5 md:px-16 py-16" style={{ backgroundColor: ES.mint }}>
           <div className="max-w-6xl mx-auto flex flex-col gap-20">
             {/* ROLE-BASED ACCESS - text left, video right */}
             <div className="flex flex-col md:flex-row items-center gap-7">
@@ -486,7 +486,7 @@ export default function EcoStackCaseStudy() {
 
         {/* OKRs + VISUAL DESIGN DECISIONS */}
         <div className="grid md:grid-cols-2">
-          <div className="p-10" style={{ backgroundColor: "#000" }}>
+          <div className="p-6 md:p-10" style={{ backgroundColor: "#000" }}>
             <span
               className="inline-block font-mono text-[16px] tracking-wide px-2 py-1 mb-5"
               style={{ backgroundColor: ES.green, color: "#000" }}
@@ -508,7 +508,7 @@ export default function EcoStackCaseStudy() {
               </li>
             </ul>
           </div>
-          <div className="p-10 bg-white text-black">
+          <div className="p-6 md:p-10 bg-white text-black">
             <span
               className="inline-block font-mono text-[16px] tracking-wide px-2 py-1 mb-5"
               style={{ backgroundColor: ES.green, color: "#000" }}
@@ -554,7 +554,7 @@ export default function EcoStackCaseStudy() {
         </div>
 
         {/* DECISIONS AND TRADE-OFFS */}
-        <section className="py-9 px-16 bg-black">
+        <section className="py-9 px-5 md:px-16 bg-black">
           <div className="max-w-6xl mx-auto">
             <p className="font-mono text-white text-[22px] tracking-wide text-center">
               DECISIONS AND TRADE-OFFS
@@ -562,7 +562,7 @@ export default function EcoStackCaseStudy() {
           </div>
         </section>
 
-        <section className="px-16 py-14">
+        <section className="px-5 md:px-16 py-14">
           <div className="max-w-6xl mx-auto flex flex-col gap-7">
             <p className="font-es-sans text-[19px] md:text-[22px] tracking-wide">
               Our team made two decisions that reflect how we prioritized our limited time and
@@ -595,7 +595,7 @@ export default function EcoStackCaseStudy() {
         </section>
 
         {/* REFINING THE MODEL */}
-        <section className="px-16 pb-14">
+        <section className="px-5 md:px-16 pb-14">
           <div className="max-w-6xl mx-auto flex flex-col gap-7">
             <Label>REFINING THE MODEL</Label>
             <p className="font-es-sans text-[19px] md:text-[22px] tracking-wide leading-snug">
@@ -626,7 +626,7 @@ export default function EcoStackCaseStudy() {
         </section>
 
         {/* REFLECTION */}
-        <section className="py-10 px-16 bg-black">
+        <section className="py-10 px-5 md:px-16 bg-black">
           <div className="max-w-6xl mx-auto">
             <Label color={ES.green}>REFLECTION</Label>
 

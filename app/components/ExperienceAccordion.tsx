@@ -21,7 +21,7 @@ function ExperienceRow({ item }: { item: ExperienceItem }) {
         onClick={() => setOpen((o) => !o)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative w-full h-[92px] flex items-center justify-between px-6 text-left"
+        className="relative w-full min-h-[92px] py-3 flex items-center justify-between px-4 md:px-6 text-left"
         style={{
           border: `1px solid ${item.color}`,
           borderRadius: 7,
@@ -35,7 +35,7 @@ function ExperienceRow({ item }: { item: ExperienceItem }) {
           animate={{ opacity: hovered || open ? 1 : 0 }}
           transition={{ duration: 0.25 }}
         />
-        <span className="relative z-10 font-mono font-medium text-white text-[17px] md:text-[24px] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis block flex-1 min-w-0 text-left pr-4">
+        <span className="relative z-10 font-mono font-medium text-white text-[15px] md:text-[24px] tracking-tight whitespace-normal md:whitespace-nowrap md:overflow-hidden md:text-ellipsis block flex-1 min-w-0 text-left pr-4">
           {item.title}
         </span>
         <motion.span
@@ -55,14 +55,14 @@ function ExperienceRow({ item }: { item: ExperienceItem }) {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="overflow-hidden bg-white"
       >
-        <div className="px-10 py-6">
-          <ul className="list-disc font-mono text-black text-lg leading-relaxed space-y-2 pl-8">
+        <div className="px-5 md:px-10 py-5 md:py-6">
+          <ul className="list-disc font-mono text-black text-base md:text-lg leading-relaxed space-y-2 pl-5 md:pl-8">
             {item.bullets.map((b, i) => (
               <li key={i}>{b}</li>
             ))}
           </ul>
           <p
-            className="font-mono text-black text-lg mt-4 px-4 py-3 rounded-[4px] inline-block"
+            className="font-mono text-black text-base md:text-lg mt-4 px-4 py-3 rounded-[4px] inline-block"
             style={{ backgroundColor: `${item.color}80` }}
           >
             <span className="font-medium">CURRENTLY</span>: {item.currently}

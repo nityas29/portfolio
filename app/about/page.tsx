@@ -26,12 +26,12 @@ export default function About() {
       <Nav />
 
       {/* HERO */}
-      <section className="relative px-24 pt-20 pb-24">
-        <div className="flex gap-16 items-start">
+      <section className="relative px-6 md:px-12 lg:px-24 pt-12 md:pt-20 pb-16 md:pb-24">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center md:items-start">
           <div className="max-w-2xl pt-2">
-            <h1 className="font-display text-white text-[64px] leading-none mb-8">MEET NITYA!</h1>
+            <h1 className="font-display text-white text-[44px] md:text-[64px] leading-none mb-6 md:mb-8">MEET NITYA!</h1>
 
-            <div className="font-mono text-white text-[22px] leading-[1.4] flex flex-col gap-6">
+            <div className="font-mono text-white text-[18px] md:text-[22px] leading-[1.4] flex flex-col gap-5 md:gap-6">
               <p>
                 I&rsquo;m a second-year{" "}
                 <span className="px-1" style={{ backgroundColor: "#eb369b" }}>
@@ -60,13 +60,13 @@ export default function About() {
             </div>
           </div>
 
-          <div className="relative shrink-0 mt-4">
+          <div className="relative shrink-0 mt-4 w-full max-w-[300px] md:max-w-[420px]">
             <Image
               src="/assets/about-photo-v2.png"
               alt="Nitya sitting in a garden"
               width={420}
               height={559}
-              className="rounded-[8px] object-cover"
+              className="rounded-[8px] object-cover w-full h-auto"
             />
             <AboutHeroStars />
           </div>
@@ -75,8 +75,8 @@ export default function About() {
 
       {/* PLAYGROUND */}
       <section className="bg-white text-black py-10">
-        <h2 className="font-display text-center text-[56px] mb-2">PLAYGROUND</h2>
-        <p className="font-mono text-center text-2xl mb-8">FRAGMENTS OF MY CREATIVE JOURNEY</p>
+        <h2 className="font-display text-center text-[40px] md:text-[56px] mb-2">PLAYGROUND</h2>
+        <p className="font-mono text-center text-base md:text-2xl mb-8 px-6">FRAGMENTS OF MY CREATIVE JOURNEY</p>
 
         <PlaygroundRow>
           <Image src="/assets/playground-jellyfish.png" alt="Painted jellyfish" width={169} height={240} className="shrink-0 object-contain" />
@@ -95,7 +95,7 @@ export default function About() {
       </section>
 
       {/* WHY PRODUCT */}
-      <section className="relative px-24 py-20 overflow-hidden">
+      <section className="relative px-6 md:px-12 lg:px-24 py-14 md:py-20 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           {WHY_PRODUCT_STARS.map((s, i) => (
             <ScatterStar
@@ -107,13 +107,13 @@ export default function About() {
           ))}
         </div>
 
-        <h2 className="relative font-display text-white text-[64px] leading-none mb-10">WHY PRODUCT?</h2>
+        <h2 className="relative font-display text-white text-[44px] md:text-[64px] leading-none mb-8 md:mb-10">WHY PRODUCT?</h2>
 
         {/* two independent columns (not a shared grid) so a taller paragraph on one side
             doesn't push the other column's spacing down - matches Figma, where each
             column's paragraphs are positioned independently of the other's */}
-        <div className="relative flex gap-20 max-w-6xl">
-          <div className="flex flex-col gap-12 flex-1">
+        <div className="relative flex flex-col md:flex-row gap-8 md:gap-20 max-w-6xl">
+          <div className="flex flex-col gap-8 md:gap-12 flex-1">
             <p className="font-mono text-white text-lg leading-relaxed">
               I am a strong believer that{" "}
               <span className="px-1" style={{ backgroundColor: "#eb369b" }}>
@@ -132,7 +132,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-12 flex-1">
+          <div className="flex flex-col gap-8 md:gap-12 flex-1">
             <p className="font-mono text-white text-lg leading-relaxed">
               Through these experiences, I became drawn to the idea of building things that
               effectively serve those who they are made for, through asking the right{" "}

@@ -7,7 +7,7 @@ import { ReactNode } from "react";
  */
 export default function PlaygroundRow({ children }: { children: ReactNode }) {
   return (
-    <div className="bg-white px-10">
+    <div className="bg-white px-5 md:px-10">
       <div className="flex gap-6 overflow-x-auto pb-2 [scrollbar-width:thin]">
         {children}
       </div>

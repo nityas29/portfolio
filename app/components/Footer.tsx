@@ -53,7 +53,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-white text-black py-[51px] px-10 overflow-hidden min-h-[337px]">
+    <footer className="relative bg-white text-black py-10 md:py-[51px] px-6 md:px-10 overflow-hidden md:min-h-[337px]">
       {/* scattered confetti stars — exact positions from Figma node 75:967, as % of the
           1920x421 bottom-bar frame so they hold up at any viewport width */}
       <ScatterStar color="#ffb200" size={16} style={{ left: "46.15%", top: "4.58%" }} />
@@ -69,16 +69,17 @@ export default function Footer() {
 
       {/* two character stars, exact position/size from Figma (1920x421 frame):
           blue "looking" star at x:1417,y:141,211x217; pink winking star at x:1619,y:125,227x233 */}
-      <div className="absolute z-10" style={{ left: "73.80%", top: "33.49%" }}>
+      {/* these two are sized in fixed px and would sit on top of the links on a phone */}
+      <div className="hidden md:block absolute z-10" style={{ left: "73.80%", top: "33.49%" }}>
         <BouncyStar src="/assets/star-guy-blue-footer-v2.png" size={177} />
       </div>
-      <div className="absolute z-10" style={{ left: "84.32%", top: "29.69%" }}>
+      <div className="hidden md:block absolute z-10" style={{ left: "84.32%", top: "29.69%" }}>
         <BouncyStar src="/assets/star-guy-pink-legs-v2.png" size={190} />
       </div>
 
       <h2 className="relative z-10 font-mono font-medium text-[19px] mb-[32px]">THANKS FOR STOPPING BY!</h2>
 
-      <div className="relative z-10 flex gap-24">
+      <div className="relative z-10 flex gap-14 md:gap-24">
         <div>
           <h3 className="font-mono font-medium text-[13px] mb-[13px]">SAY HELLO</h3>
           <ul className="font-mono text-base space-y-[13px]">

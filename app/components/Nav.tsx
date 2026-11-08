@@ -72,14 +72,14 @@ export default function Nav() {
 
   return (
     <div
-      className="sticky top-0 z-50 h-[72px] bg-[#181e24] grid grid-cols-3 items-center px-8 transition-transform duration-300 ease-in-out"
+      className="sticky top-0 z-50 h-[72px] bg-[#181e24] flex justify-between gap-3 md:grid md:grid-cols-3 items-center px-4 md:px-8 transition-transform duration-300 ease-in-out"
       style={{ transform: hidden ? "translateY(-100%)" : "translateY(0)" }}
     >
       <button onClick={goToHero} aria-label="Back to top" className="shrink-0 relative w-10 h-10 justify-self-start">
         <Image src="/assets/star-guy-logo.png" alt="" fill sizes="40px" style={{ objectFit: "contain" }} />
       </button>
 
-      <nav className="flex items-center justify-center gap-10 font-mono text-[15px] font-light text-white justify-self-center">
+      <nav className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10 font-mono text-[12px] sm:text-[13px] md:text-[15px] font-light text-white justify-self-center">
         <button onClick={() => goToSection("projects")} className="underline underline-offset-4 hover:opacity-70">
           PROJECTS
         </button>
@@ -91,19 +91,27 @@ export default function Nav() {
         </Link>
       </nav>
 
-      <div className="flex items-center gap-5 shrink-0 text-white justify-self-end">
+      <div className="flex items-center gap-4 md:gap-5 shrink-0 text-white justify-self-end">
+        {/* icon-only on phones to leave room for the three page links */}
         <a
           href="https://www.linkedin.com/in/nitya-shankar"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="LinkedIn"
           className="flex items-center gap-1.5 hover:opacity-70"
         >
           <LinkedInIcon />
-          <span className="font-mono text-[13px] font-light">LINKEDIN</span>
+          <span className="hidden md:inline font-mono text-[13px] font-light">LINKEDIN</span>
         </a>
-        <a href={`${BASE_PATH}/resume.pdf`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:opacity-70">
+        <a
+          href={`${BASE_PATH}/resume.pdf`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Resume"
+          className="flex items-center gap-1.5 hover:opacity-70"
+        >
           <UserCircleIcon />
-          <span className="font-mono text-[13px] font-light">RESUME</span>
+          <span className="hidden md:inline font-mono text-[13px] font-light">RESUME</span>
         </a>
       </div>
     </div>

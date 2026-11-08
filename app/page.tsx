@@ -70,7 +70,7 @@ export default function Home() {
       <Nav />
 
       {/* HERO */}
-      <section className="relative px-24 pt-20 pb-32">
+      <section className="relative px-6 md:px-12 lg:px-24 pt-12 md:pt-20 pb-20 md:pb-32">
         <div className="absolute inset-0 pointer-events-none">
           {HERO_SCATTER_STARS.map((s, i) => (
             <ScatterStar
@@ -82,24 +82,30 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="relative flex gap-8 items-start w-fit mx-auto">
-          <div className="relative shrink-0 w-[360px] h-[384px] mt-2">
-            <div className="absolute left-[52px] top-0">
-              <FloatingStar src="/assets/star-guy-orange-v2.png" size={218} rotate={-4.17} />
-            </div>
-            <div className="absolute left-0 top-[202px]">
-              <FloatingStar src="/assets/star-guy-blue-v3.png" size={176} rotate={3.68} />
-            </div>
-            <div className="absolute left-[182px] top-[168px]">
-              <FloatingStar src="/assets/star-guy-red-v2.png" size={180} rotate={-4.69} />
+        <div className="relative flex flex-col lg:flex-row gap-6 lg:gap-8 items-center lg:items-start w-full lg:w-fit mx-auto">
+          {/* the star cluster is laid out for a 360x384 box; below tablet width the whole box is
+              scaled to 80% (and the outer box shrunk to match) rather than re-laid-out.
+              The hero only goes side-by-side from 1024px up - the name is too wide for a
+              two-column row on tablets. */}
+          <div className="relative shrink-0 w-[288px] h-[307px] lg:w-[360px] lg:h-[384px] mt-2">
+            <div className="absolute top-0 left-0 w-[360px] h-[384px] origin-top-left scale-[0.8] lg:scale-100">
+              <div className="absolute left-[52px] top-0">
+                <FloatingStar src="/assets/star-guy-orange-v2.png" size={218} rotate={-4.17} />
+              </div>
+              <div className="absolute left-0 top-[202px]">
+                <FloatingStar src="/assets/star-guy-blue-v3.png" size={176} rotate={3.68} />
+              </div>
+              <div className="absolute left-[182px] top-[168px]">
+                <FloatingStar src="/assets/star-guy-red-v2.png" size={180} rotate={-4.69} />
+              </div>
             </div>
           </div>
 
-          <div className="max-w-3xl pt-6">
-            <p className="font-display text-white text-[48px] leading-none">HI! I&rsquo;M</p>
-            <h1 className="font-display text-white text-[110px] leading-none -mt-2">NITYA SHANKAR</h1>
+          <div className="max-w-3xl min-w-0 pt-2 lg:pt-6 text-center lg:text-left">
+            <p className="font-display text-white text-[32px] md:text-[48px] leading-none">HI! I&rsquo;M</p>
+            <h1 className="font-display text-white text-[56px] sm:text-[84px] lg:text-[110px] leading-none -mt-1 md:-mt-2">NITYA SHANKAR</h1>
 
-            <p className="font-mono text-white text-[24px] leading-snug mt-8 max-w-2xl">
+            <p className="font-mono text-white text-[18px] md:text-[24px] leading-snug mt-6 md:mt-8 max-w-2xl">
               Aspiring product designer with a passion for building digital experiences
               that feel{" "}
               <span className="px-1" style={{ backgroundColor: "#eb369b" }}>
@@ -126,8 +132,8 @@ export default function Home() {
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="relative px-24 pt-20 pb-16 scroll-mt-[119px]">
-        <h2 className="font-display text-white text-[45px] text-center mb-16">PROJECTS</h2>
+      <section id="projects" className="relative px-5 md:px-12 lg:px-24 pt-12 md:pt-20 pb-16 scroll-mt-[119px]">
+        <h2 className="font-display text-white text-[36px] md:text-[45px] text-center mb-10 md:mb-16">PROJECTS</h2>
 
         <div className="relative max-w-6xl mx-auto">
           {/* fine scattered stars, behind everything */}
@@ -150,7 +156,7 @@ export default function Home() {
             <ScatterStar color="#eb369b" size={16} className="top-[96%] left-[88%]" />
           </div>
 
-          <div className="relative z-10 flex flex-col gap-20">
+          <div className="relative z-10 flex flex-col gap-14 md:gap-20">
             <ProjectCard
               title="PAGE FRIENDS"
               date="MAY 2026"
@@ -214,12 +220,12 @@ export default function Home() {
               comingSoon
               mediaPosition="right"
               mediaSlot={
-                <div className="relative overflow-hidden" style={{ width: 415, height: 271 }}>
+                <div className="relative overflow-hidden w-full max-w-[415px] aspect-[415/271]">
                   <Image
                     src="/assets/under-construction-star-v2.png"
                     alt="Under construction: star mascot with hard hat, cone, and toolbox"
                     fill
-                    sizes="415px"
+                    sizes="(max-width: 768px) 100vw, 415px"
                     className="object-contain"
                   />
                 </div>
@@ -230,8 +236,8 @@ export default function Home() {
       </section>
 
       {/* EXPERIENCE */}
-      <section id="experience" className="px-24 pt-16 pb-20 scroll-mt-[119px]">
-        <h2 className="font-display text-white text-[38px] text-center mb-16">EXPERIENCE</h2>
+      <section id="experience" className="px-5 md:px-12 lg:px-24 pt-12 md:pt-16 pb-16 md:pb-20 scroll-mt-[119px]">
+        <h2 className="font-display text-white text-[34px] md:text-[38px] text-center mb-10 md:mb-16">EXPERIENCE</h2>
         <div className="max-w-6xl mx-auto">
           <ExperienceAccordion items={experienceItems} />
         </div>
