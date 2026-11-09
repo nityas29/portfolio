@@ -69,7 +69,7 @@ export default function ProjectCard({
     >
       <h3 className="font-mono font-medium text-black text-[24px] md:text-[29px] leading-tight">{title}</h3>
       <p className="font-mono font-light text-black/50 text-sm">{date}</p>
-      <p className="font-mono text-black text-[15px] leading-snug xl:line-clamp-2">{description}</p>
+      <p className="font-mono text-black text-[15px] leading-snug">{description}</p>
 
       <div className="flex flex-wrap gap-1.5 mt-1">
         {tags.map((tag) => (

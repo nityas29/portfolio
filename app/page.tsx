@@ -234,7 +234,7 @@ export default function Home() {
 
             <ProjectCard
               title="ASSIMILATION ON THE MENU"
-              date="SEP 2026"
+              date="NOV 2026"
               description="Mapping the lag between when immigrant communities arrive and when their cuisines reach mainstream American menus."
               tags={[
                 { label: "DATA ANALYSIS", color: "#d69500" },
