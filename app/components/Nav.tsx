@@ -75,8 +75,8 @@ export default function Nav() {
       className="sticky top-0 z-50 h-[72px] bg-[#181e24] flex justify-between gap-3 md:grid md:grid-cols-3 items-center px-4 md:px-8 transition-transform duration-300 ease-in-out"
       style={{ transform: hidden ? "translateY(-100%)" : "translateY(0)" }}
     >
-      <button onClick={goToHero} aria-label="Back to top" className="shrink-0 relative w-10 h-10 justify-self-start">
-        <Image src="/assets/star-guy-logo.png" alt="" fill sizes="40px" style={{ objectFit: "contain" }} />
+      <button id="nav-logo" onClick={goToHero} aria-label="Back to top" className="shrink-0 relative w-10 h-10 justify-self-start">
+        <Image src="/assets/intro/logo.png" alt="" fill sizes="40px" style={{ objectFit: "contain" }} />
       </button>
 
       <nav className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10 font-mono text-[12px] sm:text-[13px] md:text-[15px] font-light text-white justify-self-center">

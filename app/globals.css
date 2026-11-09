@@ -53,3 +53,65 @@ body {
 .cursor-hidden * {
   cursor: none !important;
 }
+
+/* ---------- intro (IntroSplash.tsx) ----------
+   no data-intro yet = intro about to play (server HTML); "playing" while it
+   runs; "skip" (set before paint) or "done" = hidden */
+html[data-intro="skip"] .intro-splash,
+html[data-intro="done"] .intro-splash {
+  display: none;
+}
+/* the star lands where the nav logo is, so the real logo waits for it */
+html:not([data-intro]) #nav-logo,
+html[data-intro="playing"] #nav-logo {
+  opacity: 0;
+}
+/* failsafe if JavaScript never runs: don't leave the site covered */
+html:not([data-intro]) .intro-splash {
+  animation: intro-failsafe 0s linear 8s forwards;
+}
+html:not([data-intro]) #nav-logo {
+  animation: intro-failsafe-logo 0s linear 8s forwards;
+}
+@keyframes intro-failsafe {
+  to { visibility: hidden; }
+}
+@keyframes intro-failsafe-logo {
+  to { opacity: 1; }
+}
+
+/* intro fly-in: shoots up past center, drops back with a squash, settles.
+   Pure CSS so it plays from first paint, before the JS loads. Transform origin
+   is the screen center, which is where the star sits. */
+.intro-rise {
+  animation: intro-rise 0.95s both;
+}
+@keyframes intro-rise {
+  0% {
+    transform: translateY(75vh) scale(0.85, 1.2);
+    animation-timing-function: ease-out;
+  }
+  48% {
+    transform: translateY(-12vh) scale(1, 1);
+    animation-timing-function: ease-in;
+  }
+  76% {
+    transform: translateY(2vh) scale(1.1, 0.88);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+/* gentle twinkle for the intro's background stars */
+.intro-twinkle {
+  animation: intro-twinkle 1.6s ease-in-out infinite;
+}
+@keyframes intro-twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-twinkle { animation: none; }
+}

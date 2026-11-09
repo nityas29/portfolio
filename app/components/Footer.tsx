@@ -6,6 +6,7 @@ import { motion, useAnimation } from "framer-motion";
 import FloatingStar from "./FloatingStar";
 import ScatterStar from "./ScatterStar";
 import { BASE_PATH } from "../lib/basePath";
+import FooterGame, { GROUND_STRIP } from "./FooterGame";
 
 const FOOTER_STARS_MOBILE: { x: number; y: number; color: string }[] = [
   { x: 90, y: 8, color: "#ffb200" },
@@ -62,20 +63,21 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-white text-black py-10 md:py-[51px] px-6 md:px-10 overflow-hidden md:min-h-[337px]">
+    <footer
+      className="relative bg-white text-black pt-10 md:pt-[46px] px-6 md:px-10 overflow-hidden md:min-h-[337px] lg:h-[337px]"
+      style={{ paddingBottom: GROUND_STRIP + 40 }}
+    >
       {/* scattered confetti stars — exact positions from Figma node 75:967, as % of the
           1920x421 bottom-bar frame so they hold up at any viewport width */}
-      <ScatterStar color="#ffb200" size={16} className="hidden md:block" style={{ left: "46.15%", top: "4.58%" }} />
-      <ScatterStar color="#0098d4" size={16} className="hidden md:block" style={{ left: "70.42%", top: "11.71%" }} />
-      <ScatterStar color="#ff1e00" size={16} className="hidden md:block" style={{ left: "84.90%", top: "17.89%" }} />
-      <ScatterStar color="#eb369b" size={16} className="hidden md:block" style={{ left: "97.71%", top: "14.80%" }} />
-      {/* lands on "NAVIGATE" at tablet width */}
-      <ScatterStar color="#ffb200" size={16} className="hidden lg:block" style={{ left: "34.06%", top: "29.05%" }} />
-      <ScatterStar color="#0098d4" size={16} className="hidden md:block" style={{ left: "56.88%", top: "43.30%" }} />
-      <ScatterStar color="#ff1e00" size={16} className="hidden md:block" style={{ left: "29.32%", top: "67.05%" }} />
-      <ScatterStar color="#eb369b" size={16} className="hidden md:block" style={{ left: "42.81%", top: "83.92%" }} />
-      <ScatterStar color="#ffb200" size={16} className="hidden md:block" style={{ left: "66.98%", top: "83.21%" }} />
-      <ScatterStar color="#0098d4" size={16} className="hidden md:block" style={{ left: "96.15%", top: "86.53%" }} />
+      <ScatterStar color="#ffb200" size={16} className="hidden md:block lg:hidden" style={{ left: "46.15%", top: "4.58%" }} />
+      <ScatterStar color="#0098d4" size={16} className="hidden md:block lg:hidden" style={{ left: "70.42%", top: "11.71%" }} />
+      <ScatterStar color="#ff1e00" size={16} className="hidden md:block lg:hidden" style={{ left: "84.90%", top: "17.89%" }} />
+      <ScatterStar color="#eb369b" size={16} className="hidden md:block lg:hidden" style={{ left: "97.71%", top: "14.80%" }} />
+      <ScatterStar color="#0098d4" size={16} className="hidden md:block lg:hidden" style={{ left: "56.88%", top: "43.30%" }} />
+      <ScatterStar color="#ff1e00" size={16} className="hidden md:block lg:hidden" style={{ left: "29.32%", top: "67.05%" }} />
+      <ScatterStar color="#eb369b" size={16} className="hidden md:block lg:hidden" style={{ left: "42.81%", top: "83.92%" }} />
+      <ScatterStar color="#ffb200" size={16} className="hidden md:block lg:hidden" style={{ left: "66.98%", top: "83.21%" }} />
+      <ScatterStar color="#0098d4" size={16} className="hidden md:block lg:hidden" style={{ left: "96.15%", top: "86.53%" }} />
       {/* on phones the Figma positions land on the heading and links, so a smaller set
           sits in the empty right-hand column instead */}
       {FOOTER_STARS_MOBILE.map((s, i) => (
@@ -88,17 +90,16 @@ export default function Footer() {
         />
       ))}
 
-      {/* two character stars, exact position/size from Figma (1920x421 frame):
-          blue "looking" star at x:1417,y:141,211x217; pink winking star at x:1619,y:125,227x233 */}
-      {/* these two are sized in fixed px and would sit on top of the links on a phone */}
-      {/* below 1280px the left-% positions push the pink star past the right edge, so both
-          are anchored from the right instead, overlapping about as much as they do at 1280px */}
-      <div className="hidden md:block absolute z-10 top-[33.49%] right-[calc(3.85%+150px)] xl:right-auto xl:left-[73.80%]">
+      {/* tablets keep the two bouncy character stars; from lg up the right half
+          of the footer is the star jump game instead (FooterGame) */}
+      <div className="hidden md:block lg:hidden absolute z-10 top-[33.49%] right-[calc(3.85%+150px)]">
         <BouncyStar src="/assets/star-guy-blue-footer-v2.png" size={177} />
       </div>
-      <div className="hidden md:block absolute z-10 top-[29.69%] right-[3.85%] xl:right-auto xl:left-[84.32%]">
+      <div className="hidden md:block lg:hidden absolute z-10 top-[29.69%] right-[3.85%]">
         <BouncyStar src="/assets/star-guy-pink-legs-v2.png" size={190} />
       </div>
+
+      <FooterGame />
 
       <h2 className="relative z-10 font-mono font-medium text-[19px] mb-[32px]">THANKS FOR STOPPING BY!</h2>
 
@@ -138,7 +139,13 @@ export default function Footer() {
         </div>
       </div>
 
-      <p className="relative z-10 font-mono font-light text-[11px] mt-[51px]">© NITYA SHANKAR 2026</p>
+      {/* pink ground strip: the game's floor, with the copyright in it */}
+      <div
+        className="absolute left-0 right-0 bottom-0 bg-[#eb369b] flex items-center px-6 md:px-10"
+        style={{ height: GROUND_STRIP }}
+      >
+        <p className="font-mono font-light text-[12px] text-white">© NITYA SHANKAR 2026</p>
+      </div>
     </footer>
   );
 }
