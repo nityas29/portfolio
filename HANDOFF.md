@@ -46,21 +46,24 @@ public/videos/            raw source recordings, gitignored on purpose
   - **Still to do:** confirm it is pushed, then in the repo go to Settings > Pages > Source and select **GitHub Actions**. Target URL: `https://nityas29.github.io/portfolio/`. The user chose to keep both Vercel and Pages live.
 - Raw `.mov` files in `public/videos/` are gitignored. Web copies in `public/assets/` were made with ffmpeg: `scale=880:-2, libx264, yuv420p, crf 23, no audio, +faststart`.
 
-## State of the working tree (verify with `git status` and `git log origin/main..main`)
+## Current state (as of the last session)
 
-At the time of this handoff, these were done in the working copy but may be unpushed or uncommitted:
+Everything is committed and pushed. `origin/main` is at `72d958a`, the working tree is clean, and `npx tsc --noEmit` and `npx eslint app` both pass. Recent commits, newest first:
 
-1. GitHub Pages config and workflow (commit `64ee67c`).
-2. EcoStack "VIEW PROTOTYPE" link fixed to the final Figma Make prototype (commit `65b02a3`).
-3. Custom cursor: white arrow with navy outline site-wide (`globals.css`), hidden over project cards via the `.cursor-hidden` class, where the "VIEW CASE STUDY" / "COMING SOON" label now replaces the cursor (label is centered on the pointer). Uncommitted.
-4. **Mobile responsive pass** across Nav, Footer, home, About, ProjectCard, ExperienceAccordion, PlaygroundRow, and both case studies (smaller side padding, stacked layouts, 2-column team grid, lightbox 92% wide on phones, decorative badge stars and hover label hidden below `md`, hero stacks until `lg`, `overflow-x: clip` on body). Uncommitted and **not yet verified**: typecheck, lint, and a visual check at 375px and 768px have not been run.
+- `72d958a` Hero scatter stars stay in the side margins below `lg` (on phones they were landing on the centered text). Desktop keeps the original scatter (`HERO_SCATTER_STARS`); phones and tablets use `HERO_SCATTER_STARS_MOBILE` in `app/page.tsx`.
+- `1528ff7` Mobile responsive pass across Nav, Footer, home, About, ProjectCard, ExperienceAccordion, PlaygroundRow, and both case studies. Smaller side padding, stacked layouts, 2-column team grid, lightbox 92% wide on phones, decorative badge stars and the hover label hidden below `md`, hero stacks until `lg`, `overflow-x: clip` on body. Added this file.
+- `cfa4807` Custom cursor: white arrow with navy outline site-wide (`globals.css`), hidden over project cards via the `.cursor-hidden` class, where the "VIEW CASE STUDY" / "COMING SOON" label replaces the cursor (label is centered on the pointer).
+- `65b02a3` EcoStack "VIEW PROTOTYPE" link points at the final Figma Make prototype.
+- `64ee67c` GitHub Pages config and workflow.
+
+The mobile layout was checked by the user in a phone-sized browser view, and the home hero works (the star overlap above was fixed afterward). The rest of the mobile pass has been code-reviewed but not visually checked page by page.
 
 ## Next steps
 
-1. Run `npx tsc --noEmit && npx eslint app`, fix anything, and check the site in browser device mode at 375px, 768px, and desktop. Likely rough spots: About hero stars (`AboutHeroStars.tsx` uses fixed pixel offsets), case study hero and tables, EcoStack and Page Friends feature-matrix sections, tap behavior on project cards.
-2. Commit with the correct identity and push to `main`. Confirm the Vercel deploy is green.
-3. Enable GitHub Pages (Actions source) and verify `nityas29.github.io/portfolio` loads with images, videos, nav, and resume link.
-4. Optional: build the "Assimilation on the Menu" case study page (the card currently has `comingSoon`).
+1. Do a visual pass at 375px, 768px, and desktop on every page, and fix anything rough. Likely spots: About hero stars (`AboutHeroStars.tsx` uses fixed pixel offsets and an entrance animation), the case study hero and feature sections, tap behavior on project cards (the hover video preview and label are desktop-only by design), and the star character cluster at the top of the home hero.
+2. Enable GitHub Pages: repo Settings > Pages > Source > **GitHub Actions**. The workflow is already pushed. Then verify `https://nityas29.github.io/portfolio/` loads with images, videos, nav links, and the resume link. Not yet confirmed live.
+3. Confirm the latest Vercel deployment is green.
+4. Optional: build the "Assimilation on the Menu" case study page (its card currently has `comingSoon`).
 
 ## Decisions and gotchas worth knowing
 
@@ -69,7 +72,7 @@ At the time of this handoff, these were done in the working copy but may be unpu
 - **Hero stars** use the higher-resolution `star-guy-*-v2/v3.png` assets. A decorative star behind the "Y" in NITYA was intentionally removed from `HERO_SCATTER_STARS`.
 - **EcoStack palette swatch** is pure CSS divs sized from the Figma file's exact geometry (154x260 after a deliberate 30% reduction), not an image.
 - Figma sources: EcoStack frames are in file `6Mr4yl4ipVjjQ0BsEf3SzU`.
-- **Local dev gotcha:** the project lives in `~/Desktop`, which syncs to iCloud. Evicted files made `npm run dev` hang with no output and made file reads fail. Fix: right-click the folder in Finder and choose Download Now, or move the project out of Desktop (for example `~/portfolio-site`).
+- **Local dev gotcha (resolved):** the project used to live in an iCloud-synced Desktop, and evicted files made `npm run dev` hang with no output and made file reads fail. The user turned off Desktop & Documents sync and the project is back on the normal local Desktop at `~/Desktop/portfolio site`. If `npm run dev` hangs with no output again, check for iCloud cloud-only files (`ls -lO` shows `dataless`) and consider moving the project to `~/portfolio-site`.
 - Fonts load from Google Fonts at build time, so builds need internet access (fine on Vercel and GitHub Actions).
 
 ## Working with Nitya
