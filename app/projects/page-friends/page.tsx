@@ -227,7 +227,9 @@ export default function PageFriendsCaseStudy() {
             <div className="max-w-6xl mx-auto">
               <SectionLabel>OVERVIEW</SectionLabel>
               <p className="font-pf-sans text-white text-[19px] md:text-[26px] tracking-wide leading-snug mt-4">
-                Page Friends is a friendly, interactive, and engaging application that focuses on
+                For INFO 360 (theme: AI + Informatics), our team set out to help elementary
+                students who have fallen behind in reading since the pandemic. Page Friends is a
+                friendly, interactive, and engaging application that focuses on
                 creating a personalized digital environment where kids can feel excitement to
                 read, expand their vocabulary, and improve their speaking skills.
               </p>
@@ -387,7 +389,7 @@ export default function PageFriendsCaseStudy() {
           <div className="max-w-6xl mx-auto flex flex-col gap-16">
             {/* INDIVIDUALIZATION - text left, image right */}
             <div className="flex flex-col md:flex-row items-center gap-7">
-              <div className="flex-1 text-left md:text-right">
+              <div className="w-full min-w-0 md:flex-[2] text-left md:text-right">
                 <p className="font-pf-sans font-semibold text-[22px] tracking-wide">INDIVIDUALIZATION</p>
                 <p className="font-pf-sans text-[16px] tracking-wide mt-3">
                   The user onboards with a reading diagnostic test to personalize their support to
@@ -400,13 +402,13 @@ export default function PageFriendsCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[27px] w-full max-w-[440px] h-auto"
+                className="min-w-0 md:flex-[3] rounded-[27px] w-full max-w-[680px] h-auto"
               />
             </div>
 
             {/* GAMIFICATION - image left, text right */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-7">
-              <div className="flex-1 text-left">
+              <div className="w-full min-w-0 md:flex-[2] text-left">
                 <p className="font-pf-sans font-semibold text-[22px] tracking-wide">GAMIFICATION</p>
                 <p className="font-pf-sans text-[16px] tracking-wide mt-3">
                   The user unlocks a character from each book they complete for their own personal
@@ -420,7 +422,7 @@ export default function PageFriendsCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[27px] w-full max-w-[440px] h-auto"
+                className="min-w-0 md:flex-[3] rounded-[27px] w-full max-w-[680px] h-auto"
               />
             </div>
 
@@ -430,7 +432,7 @@ export default function PageFriendsCaseStudy() {
 
             {/* LIBRARY - text left, image right */}
             <div className="flex flex-col md:flex-row items-center gap-7">
-              <div className="flex-1 text-left md:text-right">
+              <div className="w-full min-w-0 md:flex-[2] text-left md:text-right">
                 <p className="font-pf-sans font-semibold text-[22px] tracking-wide">LIBRARY</p>
                 <p className="font-pf-sans text-[16px] tracking-wide mt-3">
                   Where the user can browse personalized recommendations, track books, and filter
@@ -443,13 +445,13 @@ export default function PageFriendsCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[27px] w-full max-w-[440px] h-auto"
+                className="min-w-0 md:flex-[3] rounded-[27px] w-full max-w-[680px] h-auto"
               />
             </div>
 
             {/* VISIT TOWN - image left, text right */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-7">
-              <div className="flex-1 text-left">
+              <div className="w-full min-w-0 md:flex-[2] text-left">
                 <p className="font-pf-sans font-semibold text-[22px] tracking-wide">VISIT TOWN</p>
                 <p className="font-pf-sans text-[16px] tracking-wide mt-3">
                   Where the user interacts with unlocked characters and play literacy games tied to
@@ -462,13 +464,13 @@ export default function PageFriendsCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[27px] w-full max-w-[440px] h-auto"
+                className="min-w-0 md:flex-[3] rounded-[27px] w-full max-w-[680px] h-auto"
               />
             </div>
 
             {/* ACHIEVEMENTS - text left, image right */}
             <div className="flex flex-col md:flex-row items-center gap-7">
-              <div className="flex-1 text-left md:text-right">
+              <div className="w-full min-w-0 md:flex-[2] text-left md:text-right">
                 <p className="font-pf-sans font-semibold text-[22px] tracking-wide">ACHIEVEMENTS</p>
                 <p className="font-pf-sans text-[16px] tracking-wide mt-3">
                   Where the user collects trophies and printable certificates.
@@ -480,20 +482,20 @@ export default function PageFriendsCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[27px] w-full max-w-[440px] h-auto"
+                className="min-w-0 md:flex-[3] rounded-[27px] w-full max-w-[680px] h-auto"
               />
             </div>
 
             {/* PAGE FRIEND - image left, text right */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-7">
-              <div className="flex-1 text-left">
+              <div className="w-full min-w-0 md:flex-[2] text-left">
                 <p className="font-pf-sans font-semibold text-[22px] tracking-wide">PAGE FRIEND</p>
                 <p className="font-pf-sans text-[16px] tracking-wide mt-3">
                   A customizable AI companion that provides real-time reading feedback, read-aloud
                   support, and personalized book recommendations.
                 </p>
               </div>
-              <div className="relative flex-1 w-full max-w-[440px]">
+              <div className="relative min-w-0 md:flex-[3] w-full max-w-[680px]">
                 <ExpandableImage
                   src="/assets/pf-page-friend-screen-v2.png"
                   alt="Dashboard highlighting the Page Friend AI companion character, circled to highlight the customizable companion"
@@ -606,10 +608,15 @@ export default function PageFriendsCaseStudy() {
               HEURISTIC EVALUATION
             </p>
             <div className="flex items-center justify-center gap-5">
-              <span className="font-pf-sans font-light text-[14px] tracking-wide text-black uppercase shrink-0">
+              <span className="hidden md:inline font-pf-sans font-light text-[14px] tracking-wide text-black uppercase shrink-0">
                 Violations
               </span>
-              <div className="flex flex-1 flex-col gap-5 max-w-3xl">
+              <div className="flex flex-1 min-w-0 flex-col gap-5 max-w-3xl">
+                {/* on phones the side labels don't fit beside the rows, so they head the list instead */}
+                <div className="md:hidden flex justify-between font-pf-sans font-light text-[14px] tracking-wide text-black uppercase">
+                  <span>Violations</span>
+                  <span>Solutions</span>
+                </div>
                 <div className="flex items-center gap-3 font-pf-sans text-[16px] tracking-wide">
                   <span>Help with errors</span>
                   <Arrow />
@@ -635,7 +642,7 @@ export default function PageFriendsCaseStudy() {
                   <span className="text-right">Add tutorial in final development</span>
                 </div>
               </div>
-              <span className="font-pf-sans font-light text-[14px] tracking-wide text-black uppercase shrink-0">
+              <span className="hidden md:inline font-pf-sans font-light text-[14px] tracking-wide text-black uppercase shrink-0">
                 Solutions
               </span>
             </div>

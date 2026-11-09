@@ -118,7 +118,7 @@ export default function Home() {
                 <FloatingStar src="/assets/star-guy-orange-v2.png" size={218} rotate={-4.17} />
               </div>
               <div className="absolute left-0 top-[202px]">
-                <FloatingStar src="/assets/star-guy-blue-v3.png" size={176} rotate={3.68} />
+                <FloatingStar src="/assets/star-guy-blue-v3.png" size={176} rotate={3.68} eyes />
               </div>
               <div className="absolute left-[182px] top-[168px]">
                 <FloatingStar src="/assets/star-guy-red-v2.png" size={180} rotate={-4.69} />
@@ -203,7 +203,7 @@ export default function Home() {
               video="/assets/page-friends-demo.mp4"
               badges={[
                 { src: "/assets/star-orange.png", size: 154, className: "-left-[71px] -top-[43px]" },
-                { src: "/assets/star-red.png", size: 185, className: "left-[358px] top-[187px]" },
+                { src: "/assets/star-red.png", size: 185, className: "left-[491px] top-[257px]" },
               ]}
             />
 
@@ -227,8 +227,8 @@ export default function Home() {
               }}
               video="/assets/ecostack-demo.mp4"
               badges={[
-                { src: "/assets/star-blue-v2.png", size: 156, className: "left-[354px] -top-[114px]" },
-                { src: "/assets/star-pink.png", size: 142, className: "-left-[79px] top-[192px]" },
+                { src: "/assets/star-blue-v2.png", size: 156, className: "left-[486px] -top-[114px]" },
+                { src: "/assets/star-pink.png", size: 142, className: "-left-[79px] top-[264px]" },
               ]}
             />
 
@@ -245,12 +245,12 @@ export default function Home() {
               comingSoon
               mediaPosition="right"
               mediaSlot={
-                <div className="relative overflow-hidden w-full max-w-[415px] aspect-[415/271]">
+                <div className="relative overflow-hidden w-full max-w-[552px] xl:max-w-[560px] aspect-[415/271]">
                   <Image
                     src="/assets/under-construction-star-v2.png"
                     alt="Under construction: star mascot with hard hat, cone, and toolbox"
                     fill
-                    sizes="(max-width: 768px) 100vw, 415px"
+                    sizes="(max-width: 1279px) 100vw, 560px"
                     className="object-contain"
                   />
                 </div>

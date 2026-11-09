@@ -383,7 +383,7 @@ export default function EcoStackCaseStudy() {
           <div className="max-w-6xl mx-auto flex flex-col gap-20">
             {/* ROLE-BASED ACCESS - text left, video right */}
             <div className="flex flex-col md:flex-row items-center gap-7">
-              <div className="flex-1 text-left md:text-right">
+              <div className="w-full min-w-0 md:flex-[2] text-left md:text-right">
                 <p className="font-es-sans font-semibold text-[22px] tracking-wide">
                   ROLE-BASED ACCESS
                 </p>
@@ -398,13 +398,13 @@ export default function EcoStackCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[10px] w-full max-w-[520px] h-auto shadow-lg"
+                className="min-w-0 md:flex-[3] rounded-[10px] w-full max-w-[680px] h-auto shadow-lg"
               />
             </div>
 
             {/* DATA ENTRY - video left, text right */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-7">
-              <div className="flex-1 text-left">
+              <div className="w-full min-w-0 md:flex-[2] text-left">
                 <p className="font-es-sans font-semibold text-[22px] tracking-wide">DATA ENTRY</p>
                 <p className="font-es-sans text-[16px] tracking-wide mt-3">
                   Facilities Managers submit and track sustainability data, flagging
@@ -417,13 +417,13 @@ export default function EcoStackCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[10px] w-full max-w-[520px] h-auto shadow-lg"
+                className="min-w-0 md:flex-[3] rounded-[10px] w-full max-w-[680px] h-auto shadow-lg"
               />
             </div>
 
             {/* REPORTS - text left, video right */}
             <div className="flex flex-col md:flex-row items-center gap-7">
-              <div className="flex-1 text-left md:text-right">
+              <div className="w-full min-w-0 md:flex-[2] text-left md:text-right">
                 <p className="font-es-sans font-semibold text-[22px] tracking-wide">REPORTS</p>
                 <p className="font-es-sans text-[16px] tracking-wide mt-3">
                   Sustainability Analysts generate and export reports for stakeholder review.
@@ -436,18 +436,18 @@ export default function EcoStackCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[10px] w-full max-w-[520px] h-auto shadow-lg"
+                className="min-w-0 md:flex-[3] rounded-[10px] w-full max-w-[680px] h-auto shadow-lg"
               />
             </div>
 
             {/* COMPLIANCE HUB - video left, text right */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-7">
-              <div className="flex-1 text-left">
+              <div className="w-full min-w-0 md:flex-[2] text-left">
                 <p className="font-es-sans font-semibold text-[22px] tracking-wide">
                   COMPLIANCE HUB
                 </p>
                 <p className="font-es-sans text-[16px] tracking-wide mt-3">
-                  Compliance and Legal tracks deadlines by regulatory framework &mdash; CSRD, EU
+                  Compliance and Legal tracks deadlines by regulatory framework: CSRD, EU
                   Taxonomy, SECR, GHG Protocol.
                 </p>
               </div>
@@ -457,13 +457,13 @@ export default function EcoStackCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[10px] w-full max-w-[520px] h-auto shadow-lg"
+                className="min-w-0 md:flex-[3] rounded-[10px] w-full max-w-[680px] h-auto shadow-lg"
               />
             </div>
 
             {/* ADD FACILITY - text left, video right */}
             <div className="flex flex-col md:flex-row items-center gap-7">
-              <div className="flex-1 text-left md:text-right">
+              <div className="w-full min-w-0 md:flex-[2] text-left md:text-right">
                 <p className="font-es-sans font-semibold text-[22px] tracking-wide">
                   ADD FACILITY
                 </p>
@@ -478,7 +478,7 @@ export default function EcoStackCaseStudy() {
                 muted
                 loop
                 playsInline
-                className="flex-1 rounded-[10px] w-full max-w-[520px] h-auto shadow-lg"
+                className="min-w-0 md:flex-[3] rounded-[10px] w-full max-w-[680px] h-auto shadow-lg"
               />
             </div>
           </div>

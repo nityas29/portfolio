@@ -20,6 +20,18 @@ const WHY_PRODUCT_STARS: { x: number; y: number }[] = [
   { x: 31, y: 98 },
 ];
 
+// below 1024px the Figma positions land on the heading and text, so the stars stay in the side padding
+const WHY_PRODUCT_STARS_MOBILE: { x: number; y: number }[] = [
+  { x: 4, y: 3 },
+  { x: 96, y: 10 },
+  { x: 4, y: 24 },
+  { x: 96, y: 38 },
+  { x: 4, y: 52 },
+  { x: 96, y: 66 },
+  { x: 4, y: 80 },
+  { x: 96, y: 94 },
+];
+
 export default function About() {
   return (
     <div className="flex flex-col min-h-full">
@@ -27,7 +39,9 @@ export default function About() {
 
       {/* HERO */}
       <section className="relative px-6 md:px-12 lg:px-24 pt-12 md:pt-20 pb-16 md:pb-24">
-        <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center md:items-start">
+        {/* stacks until 1024px (like the home hero): side by side on a tablet, the 420px photo
+            leaves the text column under 200px wide */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center lg:items-start">
           <div className="max-w-2xl pt-2">
             <h1 className="font-display text-white text-[44px] md:text-[64px] leading-none mb-6 md:mb-8">MEET NITYA!</h1>
 
@@ -60,7 +74,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="relative shrink-0 mt-4 w-full max-w-[300px] md:max-w-[420px]">
+          <div className="relative shrink-0 mt-4 w-full max-w-[300px] md:max-w-[420px] lg:max-w-[340px] xl:max-w-[420px]">
             <Image
               src="/assets/about-photo-v2.png"
               alt="Nitya sitting in a garden"
@@ -102,6 +116,16 @@ export default function About() {
               key={i}
               color="white"
               size={20}
+              className="hidden lg:block"
+              style={{ left: `${s.x}%`, top: `${s.y}%`, transform: "translate(-50%, -50%)" }}
+            />
+          ))}
+          {WHY_PRODUCT_STARS_MOBILE.map((s, i) => (
+            <ScatterStar
+              key={`m${i}`}
+              color="white"
+              size={16}
+              className="lg:hidden"
               style={{ left: `${s.x}%`, top: `${s.y}%`, transform: "translate(-50%, -50%)" }}
             />
           ))}
@@ -119,7 +143,7 @@ export default function About() {
               <span className="px-1" style={{ backgroundColor: "#eb369b" }}>
                 good technology should adapt to people
               </span>
-              , not the other way around — especially the people most products overlook.
+              , not the other way around, especially for the people most products overlook.
             </p>
             <p className="font-mono text-white text-lg leading-relaxed">
               I learned the importance of user-centered design through watching my grandmother

@@ -35,7 +35,7 @@ function ExperienceRow({ item }: { item: ExperienceItem }) {
           animate={{ opacity: hovered || open ? 1 : 0 }}
           transition={{ duration: 0.25 }}
         />
-        <span className="relative z-10 font-mono font-medium text-white text-[15px] md:text-[24px] tracking-tight whitespace-normal md:whitespace-nowrap md:overflow-hidden md:text-ellipsis block flex-1 min-w-0 text-left pr-4">
+        <span className="relative z-10 font-mono font-medium text-white text-[15px] md:text-[20px] lg:text-[24px] tracking-tight block flex-1 min-w-0 text-left pr-4">
           {item.title}
         </span>
         <motion.span
