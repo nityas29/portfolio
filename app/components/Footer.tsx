@@ -141,10 +141,15 @@ export default function Footer() {
 
       {/* pink ground strip: the game's floor, with the copyright in it */}
       <div
-        className="absolute left-0 right-0 bottom-0 bg-[#eb369b] flex items-center px-6 md:px-10"
+        className="absolute left-0 right-0 bottom-0 bg-[#eb369b] flex items-center justify-between gap-4 px-6 md:px-10"
         style={{ height: GROUND_STRIP }}
       >
-        <p className="font-mono font-light text-[12px] text-white">© NITYA SHANKAR 2026</p>
+        <p className="font-mono font-light text-[12px] text-white shrink-0">© NITYA SHANKAR 2026</p>
+        {/* short month on phones so it stays on one line */}
+        <p className="font-mono font-light text-[12px] text-white text-right whitespace-nowrap">
+          LAST UPDATED: <span className="hidden sm:inline">{process.env.NEXT_PUBLIC_LAST_UPDATED}</span>
+          <span className="sm:hidden">{process.env.NEXT_PUBLIC_LAST_UPDATED_SHORT}</span>
+        </p>
       </div>
     </footer>
   );

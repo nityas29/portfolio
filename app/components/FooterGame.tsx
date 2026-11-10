@@ -27,11 +27,29 @@ export const GROUND_STRIP = 54;
 const STAR_W = 188;
 const STAR_H = 192.2;
 
+// each rock's top outline as [x, height above ground] points, traced from its
+// SVG path, so collisions follow the real lumpy shape instead of a rectangle
+// (a box over rock 3's low shelf used to catch the star on empty air)
 const ROCKS = [
-  { src: "/assets/game/rock-1.svg", w: 129.065, h: 60 },
-  { src: "/assets/game/rock-2.svg", w: 124.229, h: 58.588 },
-  { src: "/assets/game/rock-3.svg", w: 132.18, h: 59 },
-];
+  {
+    src: "/assets/game/rock-1.svg",
+    w: 129.065,
+    h: 60,
+    top: [[0, 20], [1.4, 25.4], [12, 39.5], [17.6, 42.3], [27.1, 42.3], [32.3, 44.6], [44.2, 57.7], [49.4, 60], [89.6, 60], [96, 55.9], [100.3, 46.4], [106.6, 42.3], [118.3, 42.3], [125.2, 36.2], [129, 8], [129.065, 0]],
+  },
+  {
+    src: "/assets/game/rock-2.svg",
+    w: 124.229,
+    h: 58.588,
+    top: [[0, 18], [0.8, 22], [13, 45.5], [17.9, 49.2], [66.2, 58.5], [71.4, 57.4], [98, 39.8], [120, 30.1], [124.2, 22], [124.229, 0]],
+  },
+  {
+    src: "/assets/game/rock-3.svg",
+    w: 132.18,
+    h: 59,
+    top: [[0, 10], [0.8, 14.4], [5.3, 22.8], [10.6, 26.5], [29.5, 28.9], [35.5, 34.4], [39.3, 53.4], [46.2, 59], [74.8, 59], [78.8, 57.8], [104.5, 40.4], [124.8, 27.4], [127.7, 23.5], [131.9, 9], [132.18, 0]],
+  },
+] as { src: string; w: number; h: number; top: [number, number][] }[];
 const CLOUDS = [
   { src: "/assets/game/cloud-1.svg", w: 171.682, h: 81.674 },
   { src: "/assets/game/cloud-2.svg", w: 171.682, h: 81.675 },
@@ -91,7 +109,23 @@ const STAR_BOXES = [
   { x: 55, y: 105, w: 78, h: 40 },
   { x: 68, y: 140, w: 60, h: 52 },
 ];
-const ROCK_INSET = { x: 8, top: 14, right: 6 };
+// forgiveness, in rock art px: the outline is shaved this much on every side
+const ROCK_FORGIVE = 4;
+
+// highest point of an outline between art x a and b (a <= b)
+function profileMax(top: [number, number][], a: number, b: number) {
+  const at = (x: number) => {
+    for (let i = 1; i < top.length; i++) {
+      const [x0, h0] = top[i - 1];
+      const [x1, h1] = top[i];
+      if (x <= x1) return h0 + ((h1 - h0) * (x - x0)) / (x1 - x0 || 1);
+    }
+    return 0;
+  };
+  let m = Math.max(at(a), at(b));
+  for (const [x, h] of top) if (x > a && x < b) m = Math.max(m, h);
+  return m;
+}
 
 const HI_KEY = "star-game-hi";
 
@@ -225,20 +259,21 @@ export default function FooterGame() {
   const collides = useCallback(() => {
     const s = g.current;
     for (const r of s.rocks) {
-      // rock box, x along the ground, y as height above it (inset scales
-      // with the rock; a mirrored rock just swaps its side insets)
-      const k = r.h / ROCKS[r.v].h;
-      const left = (r.flip ? ROCK_INSET.right : ROCK_INSET.x) * k;
-      const right = (r.flip ? ROCK_INSET.x : ROCK_INSET.right) * k;
-      const rx1 = r.x + left;
-      const rx2 = r.x + r.w - right;
-      const ry2 = r.h - ROCK_INSET.top * k;
-      if (rx1 > STAR_W || rx2 < 0) continue;
+      if (r.x > STAR_W || r.x + r.w < 0) continue;
+      const art = ROCKS[r.v];
+      const k = r.h / art.h; // this rock's size
       for (const b of STAR_BOXES) {
-        const bx1 = b.x;
-        const bx2 = b.x + b.w;
-        const by1 = s.y + (STAR_H - (b.y + b.h)); // bottom of box above ground
-        if (bx1 < rx2 && bx2 > rx1 && by1 < ry2) return true;
+        // the box's x span in the rock's own art units (mirrored if flipped),
+        // shaved by the forgiveness and clipped to the rock
+        let a = (b.x - r.x) / k;
+        let c = (b.x + b.w - r.x) / k;
+        if (r.flip) [a, c] = [art.w - c, art.w - a];
+        a = Math.max(a, ROCK_FORGIVE);
+        c = Math.min(c, art.w - ROCK_FORGIVE);
+        if (a >= c) continue;
+        const rockTop = (profileMax(art.top, a, c) - ROCK_FORGIVE) * k;
+        const boxBottom = s.y + (STAR_H - (b.y + b.h)); // above the ground
+        if (boxBottom < rockTop) return true;
       }
     }
     return false;
