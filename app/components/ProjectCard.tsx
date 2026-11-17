@@ -120,7 +120,7 @@ export default function ProjectCard({
       </AnimatePresence>
 
       {/* clipping lives on this inner box so the tooltip above can hang outside the card */}
-      <div className="h-full bg-white rounded-[8px] overflow-hidden flex flex-col">
+      <div className="h-full bg-white overflow-hidden flex flex-col">
         <div className="p-5 md:p-6 pb-0 md:pb-0">{mockup}</div>
 
         <div className="p-5 md:p-6 flex flex-col gap-2 flex-1">
