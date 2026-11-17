@@ -143,14 +143,16 @@ export default function Home() {
             <h1 className="font-display text-white text-[56px] sm:text-[84px] lg:text-[110px] leading-none -mt-1 md:-mt-2">NITYA SHANKAR</h1>
 
             <p className="font-mono text-white text-[18px] md:text-[24px] leading-snug mt-6 md:mt-8 max-w-2xl">
-              Aspiring product designer with a passion for building digital experiences
+              Product designer with a passion for building digital experiences
               that feel{" "}
-              <GlowHighlight color="#eb369b">personal</GlowHighlight>
-              ,{" "}
-              <GlowHighlight color="#0098d4">accessible</GlowHighlight>
-              , and{" "}
-              <GlowHighlight color="#d69500">joyful</GlowHighlight>
-              .
+              <span className="md:whitespace-nowrap">
+                <GlowHighlight color="#eb369b">personal</GlowHighlight>
+                ,{" "}
+                <GlowHighlight color="#0098d4">accessible</GlowHighlight>
+                , and{" "}
+                <GlowHighlight color="#d69500">joyful</GlowHighlight>
+                .
+              </span>
             </p>
 
             <p className="font-mono font-light text-white/70 text-sm mt-6 tracking-wide">
