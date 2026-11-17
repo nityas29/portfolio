@@ -55,11 +55,12 @@ const CLOUDS = [
   { src: "/assets/game/cloud-2.svg", w: 171.682, h: 81.675 },
   { src: "/assets/game/cloud-3.svg", w: 171.682, h: 81.674 },
 ];
-// where the clouds sit before the game starts (from the Figma frame)
+// where the clouds sit before the game starts (x from the Figma frame, y spread
+// across the wider sky range)
 const IDLE_CLOUDS = [
-  { x: 184, y: 18.46, v: 0 },
-  { x: 465, y: 78, v: 1 },
-  { x: 746.32, y: 11, v: 2 },
+  { x: 184, y: 24, v: 0 },
+  { x: 465, y: 135, v: 1 },
+  { x: 746.32, y: 62, v: 2 },
 ];
 
 // --- motion (Figma px and seconds) ---
@@ -94,7 +95,9 @@ const PAIR_SCALE: [number, number] = [0.65, 0.8];
 const MAX_DUPLICATION = 2;
 // dino clouds: gap 100-400 on a 600px canvas, sky level 30-71, max 6
 const CLOUD_GAP: [number, number] = [160, 640];
-const CLOUD_SKY: [number, number] = [11, 78];
+// widened from the Figma 11-78 so clouds spread through the sky instead of
+// hugging the top; 160 keeps them clear of the rocks (they pass behind the star)
+const CLOUD_SKY: [number, number] = [8, 160];
 const MAX_CLOUDS = 6;
 const MAX_ROCKS = 4;
 // dino: score = distance * 0.025 on a 600px canvas
