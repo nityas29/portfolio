@@ -79,6 +79,18 @@ const HERO_SCATTER_STARS_MOBILE: { x: number; y: number }[] = [
   { x: 4, y: 93 },
 ];
 
+// highlighted hero word that glows in its own color on hover
+function GlowHighlight({ color, children }: { color: string; children: React.ReactNode }) {
+  return (
+    <span
+      className="px-1 transition-shadow duration-300 hover:shadow-[0_0_18px_4px_var(--glow)]"
+      style={{ backgroundColor: color, "--glow": color } as React.CSSProperties}
+    >
+      {children}
+    </span>
+  );
+}
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-full">
@@ -133,17 +145,11 @@ export default function Home() {
             <p className="font-mono text-white text-[18px] md:text-[24px] leading-snug mt-6 md:mt-8 max-w-2xl">
               Aspiring product designer with a passion for building digital experiences
               that feel{" "}
-              <span className="px-1" style={{ backgroundColor: "#eb369b" }}>
-                personal
-              </span>
+              <GlowHighlight color="#eb369b">personal</GlowHighlight>
               ,{" "}
-              <span className="px-1" style={{ backgroundColor: "#0098d4" }}>
-                accessible
-              </span>
+              <GlowHighlight color="#0098d4">accessible</GlowHighlight>
               , and{" "}
-              <span className="px-1" style={{ backgroundColor: "#d69500" }}>
-                joyful
-              </span>
+              <GlowHighlight color="#d69500">joyful</GlowHighlight>
               .
             </p>
 
