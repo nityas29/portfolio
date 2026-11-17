@@ -64,7 +64,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative bg-white text-black pt-10 md:pt-[46px] px-6 md:px-10 overflow-hidden md:min-h-[337px] lg:h-[337px]"
+      className="relative bg-white text-black pt-10 md:pt-[46px] px-6 md:px-10 overflow-hidden md:min-h-[380px] lg:h-[380px]"
       style={{ paddingBottom: GROUND_STRIP + 40 }}
     >
       {/* scattered confetti stars — exact positions from Figma node 75:967, as % of the
@@ -74,7 +74,7 @@ export default function Footer() {
       <ScatterStar color="#ff1e00" size={16} className="hidden md:block lg:hidden" style={{ left: "84.90%", top: "17.89%" }} />
       <ScatterStar color="#eb369b" size={16} className="hidden md:block lg:hidden" style={{ left: "97.71%", top: "14.80%" }} />
       <ScatterStar color="#0098d4" size={16} className="hidden md:block lg:hidden" style={{ left: "56.88%", top: "43.30%" }} />
-      <ScatterStar color="#ff1e00" size={16} className="hidden md:block lg:hidden" style={{ left: "29.32%", top: "67.05%" }} />
+      <ScatterStar color="#ff1e00" size={16} className="hidden md:block lg:hidden" style={{ left: "44%", top: "70%" }} />
       <ScatterStar color="#eb369b" size={16} className="hidden md:block lg:hidden" style={{ left: "42.81%", top: "83.92%" }} />
       <ScatterStar color="#ffb200" size={16} className="hidden md:block lg:hidden" style={{ left: "66.98%", top: "83.21%" }} />
       <ScatterStar color="#0098d4" size={16} className="hidden md:block lg:hidden" style={{ left: "96.15%", top: "86.53%" }} />
