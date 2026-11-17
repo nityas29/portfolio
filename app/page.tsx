@@ -164,7 +164,7 @@ export default function Home() {
 
       {/* PROJECTS */}
       <section id="projects" className="relative px-5 md:px-12 lg:px-24 pt-12 md:pt-20 pb-16 scroll-mt-[119px]">
-        <h2 className="font-display text-white text-[36px] md:text-[45px] text-center mb-10 md:mb-16">PROJECTS</h2>
+        <h2 className="font-display text-white text-[34px] md:text-[38px] text-center mb-10 md:mb-16">PROJECTS</h2>
 
         <div className="relative max-w-6xl mx-auto">
           {/* fine scattered stars, behind everything */}
