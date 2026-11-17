@@ -11,15 +11,6 @@ type Tag = { label: string; color: string };
 type MediaProps = {
   src: string;
   alt: string;
-  width: number;
-  height: number;
-};
-
-type BadgeProps = {
-  src: string;
-  size: number;
-  /** offset from the corner it's anchored to */
-  className: string;
 };
 
 type ProjectCardProps = {
@@ -29,19 +20,18 @@ type ProjectCardProps = {
   tags: Tag[];
   href: string;
   comingSoon?: boolean;
-  /** photo/screenshot for shipped projects */
+  /** static mockup shown in the card's top frame */
   media?: MediaProps;
-  /** illustrated stand-in for projects without a media shot yet (e.g. "under construction") */
-  mediaSlot?: React.ReactNode;
-  /** "left" = media sits left of the text card, "right" = media sits right (default) */
-  mediaPosition?: "left" | "right";
-  badges?: BadgeProps[];
-  /** looping preview video shown on hover, in place of the static media */
+  /** looping playthrough that replaces the static mockup on hover */
   video?: string;
+  /** background color of the mockup frame (default: none) */
+  mediaBg?: string;
+  /** zoom the image in slightly and pin it to the bottom, so extra crop comes off the top */
+  zoomAnchor?: "bottom";
 };
 
-const VIDEO_W = 560;
-
+// one card per project: mockup frame on top, details below. The frame keeps the
+// Figma mockup proportions (719 x 442).
 export default function ProjectCard({
   title,
   date,
@@ -50,10 +40,9 @@ export default function ProjectCard({
   href,
   comingSoon = false,
   media,
-  mediaSlot,
-  mediaPosition = "right",
-  badges,
   video,
+  mediaBg,
+  zoomAnchor,
 }: ProjectCardProps) {
   const [hovered, setHovered] = useState(false);
   const [tip, setTip] = useState({ x: 0, y: 0 });
@@ -63,64 +52,23 @@ export default function ProjectCard({
     setTip({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   }
 
-  const card = (
+  const mockup = media && (
     <div
-      className="relative z-10 bg-white p-6 flex flex-col justify-center gap-2 w-full max-w-[552px] xl:max-w-[480px] min-w-0 overflow-hidden min-h-[271px] xl:h-[372px]"
+      className="relative w-full aspect-[719/442] overflow-hidden"
+      style={mediaBg ? { backgroundColor: mediaBg } : undefined}
     >
-      <h3 className="font-mono font-medium text-black text-[24px] md:text-[29px] leading-tight">{title}</h3>
-      <p className="font-mono font-light text-black/50 text-sm">{date}</p>
-      <p className="font-mono text-black text-[15px] leading-snug">{description}</p>
-
-      <div className="flex flex-wrap gap-1.5 mt-1">
-        {tags.map((tag) => (
-          <span
-            key={tag.label}
-            className="font-mono uppercase text-xs text-white px-2.5 py-1"
-            style={{ backgroundColor: tag.color }}
-          >
-            {tag.label}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-
-  const mediaBlock = (media || mediaSlot) && (
-    <div
-      className={`relative shrink-0 ${video ? "w-full max-w-[552px] xl:max-w-[560px] aspect-[408/271]" : "w-full max-w-[552px] xl:max-w-[560px]"}`}
-    >
-      {/* decorative badge stars sit outside the card's edges with fixed pixel offsets
-          laid out for the side-by-side row, so they only show once the row kicks in */}
-      {badges?.map((b, i) => (
-        <Image
-          key={i}
-          src={b.src}
-          alt=""
-          width={b.size}
-          height={b.size}
-          className={`absolute z-0 pointer-events-none hidden xl:block ${b.className}`}
-        />
-      ))}
-      {media && video && (
-        <Image
-          src={media.src}
-          alt={media.alt}
-          fill
-          sizes={`(max-width: 1279px) 100vw, ${VIDEO_W}px`}
-          className="relative z-10 object-cover"
-          style={{ opacity: hovered ? 0 : 1, transition: "opacity 0.2s ease" }}
-        />
-      )}
-      {media && !video && (
-        <Image
-          src={media.src}
-          alt={media.alt}
-          width={media.width}
-          height={media.height}
-          className="relative z-10 object-cover max-w-full h-auto"
-        />
-      )}
-      {mediaSlot}
+      <Image
+        src={media.src}
+        alt={media.alt}
+        fill
+        sizes="(max-width: 767px) 100vw, 560px"
+        className={zoomAnchor ? "object-cover object-bottom origin-bottom scale-[1.06]" : "object-cover"}
+        style={
+          video
+            ? { opacity: hovered ? 0 : 1, transition: "opacity 0.2s ease" }
+            : undefined
+        }
+      />
       {video && (
         <video
           src={`${BASE_PATH}${video}`}
@@ -128,20 +76,16 @@ export default function ProjectCard({
           muted
           loop
           playsInline
-          className="absolute inset-0 z-10 object-cover w-full h-full"
+          className="absolute inset-0 object-cover w-full h-full"
           style={{ opacity: hovered ? 1 : 0, transition: "opacity 0.2s ease" }}
         />
       )}
     </div>
   );
 
-  // card and media stack until 1280px: the row needs 480 + 32 + 560px, and anything
-  // narrower squeezes the fixed-height text card until its description is cut off
   const content = (
     <div
-      className={`relative flex flex-col items-center justify-center gap-5 md:gap-8 cursor-hidden ${
-        mediaPosition === "left" ? "xl:flex-row-reverse" : "xl:flex-row"
-      }`}
+      className="relative h-full cursor-hidden"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
@@ -154,21 +98,54 @@ export default function ProjectCard({
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.12 }}
             className="hidden md:block absolute z-20 text-black font-mono uppercase text-sm px-3 py-1 rounded whitespace-nowrap pointer-events-none"
-            style={{ backgroundColor: "#eb369b", left: tip.x, top: tip.y, transform: "translate(-50%, -50%)" }}
+            style={{
+              backgroundColor: "#eb369b",
+              left: tip.x,
+              top: tip.y,
+              transform: "translate(-50%, -50%)",
+            }}
           >
             {comingSoon ? "COMING SOON" : "VIEW CASE STUDY"}
           </motion.div>
         )}
       </AnimatePresence>
 
-      {card}
-      {mediaBlock}
+      {/* clipping lives on this inner box so the tooltip above can hang outside the card */}
+      <div className="h-full bg-white rounded-[8px] overflow-hidden flex flex-col">
+        <div className="p-5 md:p-6 pb-0 md:pb-0">{mockup}</div>
+
+        <div className="p-5 md:p-6 flex flex-col gap-2 flex-1">
+          <h3 className="font-mono font-medium text-black text-[22px] md:text-[26px] leading-tight">
+            {title}
+          </h3>
+          <p className="font-mono font-light text-black/50 text-sm">{date}</p>
+          <p className="font-mono text-black text-[15px] leading-snug">
+            {description}
+          </p>
+
+          <div className="flex flex-wrap gap-1.5 mt-auto pt-3">
+            {tags.map((tag) => (
+              <span
+                key={tag.label}
+                className="font-mono uppercase text-xs text-white px-2.5 py-1"
+                style={{ backgroundColor: tag.color }}
+              >
+                {tag.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 
   if (comingSoon) {
-    return <div>{content}</div>;
+    return <div className="h-full">{content}</div>;
   }
 
-  return <Link href={href}>{content}</Link>;
+  return (
+    <Link href={href} className="block h-full">
+      {content}
+    </Link>
+  );
 }

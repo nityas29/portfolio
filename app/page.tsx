@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import FloatingStar from "./components/FloatingStar";
@@ -181,7 +180,7 @@ export default function Home() {
             <ScatterStar color="#eb369b" size={16} className="top-[96%] left-[88%]" />
           </div>
 
-          <div className="relative z-10 flex flex-col gap-14 md:gap-20">
+          <div className="relative z-10 grid md:grid-cols-2 gap-8 md:gap-10 items-stretch">
             <ProjectCard
               title="PAGE FRIENDS"
               date="MAY 2026"
@@ -193,18 +192,11 @@ export default function Home() {
                 { label: "SCOPING+PRIORITIZATION", color: "#ff1e00" },
               ]}
               href="/projects/page-friends"
-              mediaPosition="right"
               media={{
                 src: "/assets/page-friends-preview-v2.png",
                 alt: "Page Friends app screens: Welcome, Library, and Visit Town",
-                width: 375,
-                height: 250,
               }}
               video="/assets/page-friends-demo.mp4"
-              badges={[
-                { src: "/assets/star-orange.png", size: 154, className: "-left-[71px] -top-[43px]" },
-                { src: "/assets/star-red.png", size: 185, className: "left-[491px] top-[257px]" },
-              ]}
             />
 
             <ProjectCard
@@ -218,18 +210,28 @@ export default function Home() {
                 { label: "DATA MODELING(DFD)", color: "#d69500" },
               ]}
               href="/projects/ecostack"
-              mediaPosition="left"
               media={{
                 src: "/assets/ecostack-preview-v2.png",
                 alt: "EcoStack sustainability reports dashboard",
-                width: 517,
-                height: 331,
               }}
               video="/assets/ecostack-demo.mp4"
-              badges={[
-                { src: "/assets/star-blue-v2.png", size: 156, className: "left-[486px] -top-[114px]" },
-                { src: "/assets/star-pink.png", size: 142, className: "-left-[79px] top-[264px]" },
+            />
+
+            <ProjectCard
+              title="MUSEMAP"
+              date="MAY 2026"
+              description="Helping Seattle students discover museums and plan visits built around their interests."
+              tags={[
+                { label: "USER RESEARCH", color: "#0098d4" },
+                { label: "RESEARCH TO FEATURES", color: "#ff1e00" },
+                { label: "USER FLOWS", color: "#eb369b" },
               ]}
+              href="/projects/musemap"
+              media={{
+                src: "/assets/mm-home-preview.jpg",
+                alt: "Musemap home screen in a phone frame",
+              }}
+              video="/assets/mm-preview-demo.mp4"
             />
 
             <ProjectCard
@@ -243,18 +245,12 @@ export default function Home() {
               ]}
               href="/projects/assimilation-on-the-menu"
               comingSoon
-              mediaPosition="right"
-              mediaSlot={
-                <div className="relative overflow-hidden w-full max-w-[552px] xl:max-w-[560px] aspect-[415/271]">
-                  <Image
-                    src="/assets/under-construction-star-v2.png"
-                    alt="Under construction: star mascot with hard hat, cone, and toolbox"
-                    fill
-                    sizes="(max-width: 1279px) 100vw, 560px"
-                    className="object-contain"
-                  />
-                </div>
-              }
+              mediaBg="#ffffff"
+              zoomAnchor="bottom"
+              media={{
+                src: "/assets/under-construction-white-bg.png",
+                alt: "Under construction: star mascot with hard hat, cone, and toolbox",
+              }}
             />
           </div>
         </div>

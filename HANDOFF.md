@@ -4,7 +4,7 @@ Read this first. It summarizes the project, how it is deployed, decisions alread
 
 ## The project
 
-Personal portfolio for **Nitya Shankar** (UW Informatics '28, HCI track), used for product management and product design internship applications. It is a Next.js site with a home page, an About page, and two full case studies (Page Friends and EcoStack). A third project card ("Assimilation on the Menu") is a "coming soon" placeholder with no page yet.
+Personal portfolio for **Nitya Shankar** (UW Informatics '28, HCI track), used for product management and product design internship applications. It is a Next.js site with a home page, an About page, and three full case studies (Page Friends, EcoStack, and Musemap).
 
 - **Stack:** Next.js 16 (App Router, Turbopack), React, TypeScript (strict), Tailwind CSS v4 (tokens mapped in `app/globals.css` via `@theme inline`), Framer Motion, `next/image`, `next/font/google`.
 - **Dev:** `npm run dev` then http://localhost:3000. Typecheck and lint: `npx tsc --noEmit && npx eslint app`.
@@ -23,7 +23,7 @@ app/
   components/
     Nav.tsx               sticky nav, hides on scroll down
     Footer.tsx            footer with bouncing star characters
-    ProjectCard.tsx       home project cards: hover video preview, hover label
+    ProjectCard.tsx       home project cards: one card per project (mockup frame on top, details below) in a 2-column grid; hover plays the mockup video, label follows the pointer. `mediaBg` + `zoomAnchor` for artwork pinned to the bottom of the frame (used by the coming-soon card)
     ExperienceAccordion.tsx  data-driven accordion (ExperienceItem type)
     FloatingStar.tsx      idle bob + cursor-repel star (see Gotchas)
     AboutHeroStars.tsx    entrance fly-out animation for About photo stars
@@ -58,12 +58,15 @@ Everything is committed and pushed. `origin/main` is at `72d958a`, the working t
 
 The mobile layout was checked by the user in a phone-sized browser view, and the home hero works (the star overlap above was fixed afterward). The rest of the mobile pass has been code-reviewed but not visually checked page by page.
 
+## Musemap case study (draft)
+
+`app/projects/musemap/page.tsx` mirrors the Page Friends structure using the shared `components/case-study/*` pieces, with its own palette `MM` and Averia Serif Libre (`font-mm-serif`, loaded in `layout.tsx`). Images are slide renders from the final deck at `public/assets/mm-*.jpg`. A Musemap card follows EcoStack on the home page. Anything in `[BRACKETS]` in the page is a placeholder for info only Nitya has (team, course, prototype link, flow rationale, tester count, a personal reflection line). No hover video yet.
+
 ## Next steps
 
 1. Do a visual pass at 375px, 768px, and desktop on every page, and fix anything rough. Likely spots: About hero stars (`AboutHeroStars.tsx` uses fixed pixel offsets and an entrance animation), the case study hero and feature sections, tap behavior on project cards (the hover video preview and label are desktop-only by design), and the star character cluster at the top of the home hero.
 2. Enable GitHub Pages: repo Settings > Pages > Source > **GitHub Actions**. The workflow is already pushed. Then verify `https://nityas29.github.io/portfolio/` loads with images, videos, nav links, and the resume link. Not yet confirmed live.
 3. Confirm the latest Vercel deployment is green.
-4. Optional: build the "Assimilation on the Menu" case study page (its card currently has `comingSoon`).
 
 ## Decisions and gotchas worth knowing
 

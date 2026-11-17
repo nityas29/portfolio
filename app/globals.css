@@ -27,7 +27,8 @@
   --font-pf-display: var(--font-balsamiq);
   /* EcoStack case study only - that product's own type system (Inter / Inter Light) */
   --font-es-sans: var(--font-inter);
-}
+  /* Musemap style guide specimen only (Averia Serif Libre) */
+  --font-mm-serif: var(--font-averia);}
 
 body {
   background: var(--background);

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Mono, DM_Sans, Londrina_Solid, Balsamiq_Sans, Inter } from "next/font/google";
+import { DM_Mono, DM_Sans, Londrina_Solid, Balsamiq_Sans, Inter, Averia_Serif_Libre } from "next/font/google";
 import "./globals.css";
 import IntroSplash from "./components/IntroSplash";
 import { INTRO_KEY } from "./lib/intro";
@@ -46,6 +46,13 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+// used only for the Musemap style guide specimen (that product's heading typeface)
+const averiaSerif = Averia_Serif_Libre({
+  variable: "--font-averia",
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Nitya Shankar",
   description: "Product + design portfolio of Nitya Shankar",
@@ -55,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${dmMono.variable} ${londrinaSolid.variable} ${dmSans.variable} ${balsamiqSans.variable} ${inter.variable} h-full antialiased`}
+      className={`${dmMono.variable} ${londrinaSolid.variable} ${dmSans.variable} ${balsamiqSans.variable} ${inter.variable} ${averiaSerif.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
