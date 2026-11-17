@@ -28,6 +28,8 @@ type ProjectCardProps = {
   mediaBg?: string;
   /** zoom the image in slightly and pin it to the bottom, so extra crop comes off the top */
   zoomAnchor?: "bottom";
+  /** pin the image to the bottom of the frame (no zoom), so any crop comes off the top */
+  mediaAlign?: "bottom";
 };
 
 // one card per project: mockup frame on top, details below. The frame keeps the
@@ -43,6 +45,7 @@ export default function ProjectCard({
   video,
   mediaBg,
   zoomAnchor,
+  mediaAlign,
 }: ProjectCardProps) {
   const [hovered, setHovered] = useState(false);
   const [tip, setTip] = useState({ x: 0, y: 0 });
@@ -62,7 +65,13 @@ export default function ProjectCard({
         alt={media.alt}
         fill
         sizes="(max-width: 767px) 100vw, 560px"
-        className={zoomAnchor ? "object-cover object-bottom origin-bottom scale-[1.06]" : "object-cover"}
+        className={
+          zoomAnchor
+            ? "object-cover object-bottom origin-bottom scale-[1.06]"
+            : mediaAlign === "bottom"
+              ? "object-cover object-bottom"
+              : "object-cover"
+        }
         style={
           video
             ? { opacity: hovered ? 0 : 1, transition: "opacity 0.2s ease" }

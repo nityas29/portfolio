@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import FloatingStar from "./components/FloatingStar";
@@ -166,7 +167,6 @@ export default function Home() {
             <ScatterStar color="#0098d4" size={14} className="top-[6%] left-[62%]" />
             <ScatterStar color="#ff1e00" size={18} className="top-[10%] left-[8%]" />
             <ScatterStar color="#eb369b" size={14} className="top-[16%] left-[85%]" />
-            <ScatterStar color="#ffb200" size={12} className="top-[22%] left-[50%]" />
             <ScatterStar color="#0098d4" size={16} className="top-[27%] left-[20%]" />
             <ScatterStar color="#ff1e00" size={14} className="top-[35%] left-[70%]" />
             <ScatterStar color="#eb369b" size={18} className="top-[40%] left-[4%]" />
@@ -178,6 +178,16 @@ export default function Home() {
             <ScatterStar color="#0098d4" size={14} className="top-[85%] left-[75%]" />
             <ScatterStar color="#ff1e00" size={12} className="top-[92%] left-[25%]" />
             <ScatterStar color="#eb369b" size={16} className="top-[96%] left-[88%]" />
+          </div>
+
+          {/* large colorful stars peeking out from behind the card grid. Fixed pixel
+              offsets push them past the grid edges, so they only show from lg up,
+              where the side padding leaves room for them. */}
+          <div className="absolute inset-0 pointer-events-none z-0 hidden lg:block" aria-hidden>
+            <Image src="/assets/star-orange.png" alt="" width={154} height={154} className="absolute -left-[70px] -top-[45px]" />
+            <Image src="/assets/star-blue-v2.png" alt="" width={156} height={156} className="absolute -right-[72px] top-[22%]" />
+            <Image src="/assets/star-pink.png" alt="" width={142} height={142} className="absolute -left-[68px] top-[58%]" />
+            <Image src="/assets/star-red.png" alt="" width={185} height={185} className="absolute -right-[85px] -bottom-[55px]" />
           </div>
 
           <div className="relative z-10 grid md:grid-cols-2 gap-8 md:gap-10 items-stretch">
@@ -196,6 +206,7 @@ export default function Home() {
                 src: "/assets/page-friends-preview-v2.png",
                 alt: "Page Friends app screens: Welcome, Library, and Visit Town",
               }}
+              mediaAlign="bottom"
               video="/assets/page-friends-demo.mp4"
             />
 
