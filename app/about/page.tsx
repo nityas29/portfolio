@@ -41,7 +41,7 @@ export default function About() {
       <section className="relative px-6 md:px-12 lg:px-24 pt-12 md:pt-20 pb-16 md:pb-24">
         {/* stacks until 1024px (like the home hero): side by side on a tablet, the 420px photo
             leaves the text column under 200px wide */}
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center lg:items-start">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center lg:items-start max-w-6xl mx-auto">
           <div className="max-w-2xl pt-2">
             <h1 className="font-display text-white text-[44px] md:text-[64px] leading-none mb-6 md:mb-8">MEET NITYA!</h1>
 
@@ -131,12 +131,12 @@ export default function About() {
           ))}
         </div>
 
-        <h2 className="relative font-display text-white text-[44px] md:text-[64px] leading-none mb-8 md:mb-10">WHY PRODUCT?</h2>
+        <h2 className="relative font-display text-white text-[44px] md:text-[64px] leading-none mb-8 md:mb-10 max-w-6xl mx-auto">WHY PRODUCT?</h2>
 
         {/* two independent columns (not a shared grid) so a taller paragraph on one side
             doesn't push the other column's spacing down - matches Figma, where each
             column's paragraphs are positioned independently of the other's */}
-        <div className="relative flex flex-col md:flex-row gap-8 md:gap-20 max-w-6xl">
+        <div className="relative flex flex-col md:flex-row gap-8 md:gap-20 max-w-6xl mx-auto">
           <div className="flex flex-col gap-8 md:gap-12 flex-1">
             <p className="font-mono text-white text-lg leading-relaxed">
               I am a strong believer that{" "}

@@ -130,6 +130,9 @@ export default function Footer() {
               <button onClick={goToHero}>HOME</button>
             </li>
             <li>
+              <button onClick={() => goToSection("projects")}>PROJECTS</button>
+            </li>
+            <li>
               <button onClick={() => goToSection("experience")}>EXPERIENCE</button>
             </li>
             <li>

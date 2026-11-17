@@ -228,41 +228,26 @@ export default function Home() {
               video="/assets/ecostack-demo.mp4"
             />
 
-            <ProjectCard
-              title="MUSEMAP"
-              date="MAY 2026"
-              description="Helping Seattle students discover museums and plan visits built around their interests."
-              tags={[
-                { label: "USER RESEARCH", color: "#0098d4" },
-                { label: "RESEARCH TO FEATURES", color: "#ff1e00" },
-                { label: "USER FLOWS", color: "#eb369b" },
-              ]}
-              href="/projects/musemap"
-              media={{
-                src: "/assets/mm-home-preview.jpg",
-                alt: "Musemap home screen in a phone frame",
-              }}
-              video="/assets/mm-preview-demo.mp4"
-            />
-
-            <ProjectCard
-              title="ASSIMILATION ON THE MENU"
-              date="NOV 2026"
-              description="Mapping the lag between when immigrant communities arrive and when their cuisines reach mainstream American menus."
-              tags={[
-                { label: "DATA ANALYSIS", color: "#d69500" },
-                { label: "TEXT CLASSIFICATION", color: "#ff1e00" },
-                { label: "NARRATIVE DESIGN", color: "#eb369b" },
-              ]}
-              href="/projects/assimilation-on-the-menu"
-              comingSoon
-              mediaBg="#ffffff"
-              zoomAnchor="bottom"
-              media={{
-                src: "/assets/under-construction-white-bg.png",
-                alt: "Under construction: star mascot with hard hat, cone, and toolbox",
-              }}
-            />
+            <div className="md:col-span-2">
+              <ProjectCard
+                title="MUSEMAP"
+                date="MAY 2026"
+                description="Helping Seattle students discover museums and plan visits built around their interests."
+                tags={[
+                  { label: "USER RESEARCH", color: "#0098d4" },
+                  { label: "RESEARCH TO FEATURES", color: "#ff1e00" },
+                  { label: "USER FLOWS", color: "#eb369b" },
+                ]}
+                href="/projects/musemap"
+                mediaBg="#e8e1d9"
+                media={{
+                  src: "/assets/mm-cover-phone.png",
+                  alt: "Musemap home screen on a tilted iPhone",
+                }}
+                video="/assets/mm-preview-demo.mp4"
+                horizontal
+              />
+            </div>
           </div>
         </div>
       </section>
